@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>نظام التواصل مع أولياء الأمور</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+
+margin:0;
+
+font-family:"Cairo",sans-serif;
+
+direction:rtl;
+
+text-align:center;
+
+min-height:100vh;
+
+overflow-x:hidden;
+
+background-image:
+linear-gradient(
+rgba(255,255,255,0.285),
+rgba(255,255,255,0.158)
+),
+url("https://lh3.googleusercontent.com/d/1EfrMWJS_ZlookD8ZiZE7krk_6x_bkwez");
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+background-attachment:fixed;
+}
+
+/* الطبقة الرئيسية */
+
+.overlay{
+
+min-height:100vh;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+padding:40px 20px;
+}
+
+/* الشعار */
+
+.logo{
+
+width:170px;
+
+max-width:40vw;
+
+height:auto;
+
+margin-bottom:20px;
+}
+
+/* العنوان */
+
+h1{
+
+color:#1f3c88;
+
+font-size:clamp(32px,6vw,60px);
+
+line-height:1.3;
+
+margin:0 0 30px;
+
+padding:0 10px;
+}
+
+/* الصناديق */
+
+.container,
+.stats-container{
+
+width:min(92vw,520px);
+
+background:rgba(255,255,255,0.482);
+
+padding:30px;
+
+border-radius:28px;
+
+box-shadow:0 10px 35px rgba(0,0,0,0.12);
+
+backdrop-filter:blur(6px);
+}
+
+.stats-container{
+
+margin-top:20px;
+}
+
+/* الحقول */
+
+.search-box{
+
+position:relative;
+
+margin-bottom:18px;
+}
+
+/* الأيقونة */
+
+.icon{
+
+position:absolute;
+
+right:16px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+font-size:18px;
+
+color:#1f3c88;
+
+z-index:2;
+
+pointer-events:none;
+}
+
+/* القوائم */
+
+select{
+
+width:100%;
+
+height:60px;
+
+border-radius:16px;
+
+border:1px solid #d7d7d7;
+
+padding-right:50px;
+
+padding-left:40px;
+
+font-size:17px;
+
+font-family:"Cairo",sans-serif;
+
+background:white;
+
+color:#333;
+
+outline:none;
+
+appearance:auto;
+
+-webkit-appearance:auto;
+
+cursor:pointer;
+}
+
+select:focus{
+
+border-color:#1f3c88;
+
+box-shadow:0 0 10px rgba(31,60,136,0.15);
+}
+
+/* الزر */
+
+button{
+
+width:100%;
+
+height:60px;
+
+border:none;
+
+border-radius:16px;
+
+background:#1f3c88;
+
+color:white;
+
+font-size:20px;
+
+font-family:"Cairo",sans-serif;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:0.25s;
+
+margin-top:10px;
+}
+
+button:hover{
+
+background:#6c3eb7;
+
+transform:translateY(-2px);
+
+box-shadow:0 8px 18px rgba(108,62,183,0.25);
+}
+
+/* رسائل اليوم */
+
+.today-box{
+
+background:#f8f8ff;
+
+padding:18px;
+
+border-radius:20px;
+
+margin-bottom:18px;
+
+font-size:22px;
+
+font-weight:bold;
+
+color:#1f3c88;
+}
+
+#today-count{
+
+color:#6c3eb7;
+
+font-size:34px;
+}
+
+/* الإحصائيات */
+
+.stats-box{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:14px;
+}
+
+.stat-card{
+
+background:#f8f8ff;
+
+padding:18px 10px;
+
+border-radius:18px;
+
+box-shadow:0 5px 12px rgba(0,0,0,0.05);
+}
+
+.stat-card h3{
+
+margin:0;
+
+font-size:15px;
+
+color:#1f3c88;
+}
+
+.stat-card p{
+
+margin-top:10px;
+
+font-size:30px;
+
+font-weight:bold;
+
+color:#6c3eb7;
+}
+
+/* الفوتر */
+
+.footer{
+
+margin-top:25px;
+
+font-size:14px;
+
+color:#444;
+
+padding-bottom:15px;
+}
+
+/* الجوال */
+
+@media(max-width:600px){
+
+.overlay{
+
+padding:25px 14px;
+}
+
+.logo{
+
+width:140px;
+}
+
+h1{
+
+font-size:32px;
+
+margin-bottom:22px;
+}
+
+.container,
+.stats-container{
+
+width:100%;
+
+padding:20px;
+
+border-radius:24px;
+}
+
+select,
+button{
+
+height:56px;
+
+font-size:16px;
+}
+
+.stats-box{
+
+grid-template-columns:1fr;
+}
+
+.today-box{
+
+font-size:18px;
+}
+
+#today-count{
+
+font-size:28px;
+}
+
+}
+
+/* الشاشات الكبيرة */
+
+@media(min-width:1400px){
+
+.container,
+.stats-container{
+
+max-width:600px;
+}
+
+h1{
+
+font-size:60px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<img
+src="https://lh3.googleusercontent.com/d/1M2HSqXpnuZrGR_KJFeiIypmAepALG9bh"
+class="logo"
+alt="شعار المدرسة">
+
+<h1>التواصل مع شركاء النجاح</h1>
+
+
+<!-- صندوق الإرسال -->
+
+<div class="container">
+
+
+<!-- المرحلة -->
+
+<div class="search-box">
+
+<span class="icon">📚</span>
+
+<select id="stage">
+
+<option value="">اختاري المرحلة</option>
+
+<option value="أول ثانوي">أول ثانوي</option>
+
+<option value="ثاني ثانوي">ثاني ثانوي</option>
+
+<option value="ثالث ثانوي">ثالث ثانوي</option>
+
+</select>
+
+</div>
+
+
+<!-- الطالبة -->
+
+<div class="search-box">
+
+<span class="icon">🔎</span>
+
+<select id="search" disabled>
+
+<option value="">اختاري المرحلة أولاً</option>
+
+</select>
+
+</div>
+
+
+<!-- سبب الإرسال -->
+
+<div class="search-box">
+
+<span class="icon">📩</span>
+
+<select id="type">
+
+<option value="">اختاري سبب الإرسال</option>
+
+<option value="غياب">غياب</option>
+
+<option value="تأخر">تأخر</option>
+
+<option value="شكر">شكر</option>
+
+<option value="مخالفة">مخالفة</option>
+
+</select>
+
+</div>
+
+
+<button onclick="send()">
+
+إرسال الرسالة
+
+</button>
+
+</div>
+
+
+<!-- صندوق الإحصائيات -->
+
+<div class="stats-container">
+
+<div class="today-box">
+
+📅 رسائل اليوم:
+<span id="today-count">0</span>
+
+</div>
+
+
+<div class="stats-box">
+
+<div class="stat-card">
+
+<h3>أول ثانوي</h3>
+
+<p id="first-count">0</p>
+
+</div>
+
+
+<div class="stat-card">
+
+<h3>ثاني ثانوي</h3>
+
+<p id="second-count">0</p>
+
+</div>
+
+
+<div class="stat-card">
+
+<h3>ثالث ثانوي</h3>
+
+<p id="third-count">0</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="footer">
+
+متوسطة وثانوية الأندلس الأهلية بالطائف - بنات
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   البيانات
+========================================= */
+
+let students = [];
+
+
+/* =========================================
+   قراءة بيانات الطالبات من Google Sheets
+========================================= */
+
+Papa.parse(
+
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vR4K8UQ_uSMn_FwrdBwl43fTGnkjQtSyL7POpEwefMyz1lEpNJBQ5enZRvrfgYnuXVv_HWpqaRh4zSz/pub?gid=0&single=true&output=csv",
+
+{
+
+download:true,
+
+header:true,
+
+complete:function(results){
+
+students = results.data
+
+.map(student => ({
+
+name: student.name?.trim() || "",
+
+phone: student.phone?.trim() || "",
+
+id: student.id?.trim() || "",
+
+stage: student.stage?.trim() || ""
+
+}))
+
+.filter(student => student.name);
+
+}
+
+}
+
+);
+
+
+/* =========================================
+   عناصر الصفحة
+========================================= */
+
+const stageSelect =
+document.getElementById("stage");
+
+const studentSelect =
+document.getElementById("search");
+
+const typeSelect =
+document.getElementById("type");
+
+
+/* =========================================
+   عند اختيار المرحلة
+========================================= */
+
+stageSelect.addEventListener("change", function(){
+
+const selectedStage = this.value;
+
+
+/* تصفير الطالبة */
+
+studentSelect.innerHTML =
+'<option value="">اختاري الطالبة</option>';
+
+studentSelect.disabled = true;
+
+
+/* إذا لم يتم اختيار مرحلة */
+
+if(!selectedStage){
+
+studentSelect.innerHTML =
+'<option value="">اختاري المرحلة أولاً</option>';
+
+return;
+
+}
+
+
+/* البحث عن طالبات المرحلة */
+
+const filteredStudents =
+students.filter(student =>
+student.stage === selectedStage
+);
+
+
+/* إضافة الطالبات */
+
+filteredStudents.forEach(student => {
+
+const option =
+document.createElement("option");
+
+option.value = student.name;
+
+option.textContent = student.name;
+
+studentSelect.appendChild(option);
+
+});
+
+
+/* تفعيل القائمة */
+
+if(filteredStudents.length > 0){
+
+studentSelect.disabled = false;
+
+}
+
+else{
+
+studentSelect.innerHTML =
+'<option value="">لا توجد طالبات لهذه المرحلة</option>';
+
+}
+
+});
+
+
+/* =========================================
+   تحميل عداد اليوم
+========================================= */
+
+const today =
+new Date().toLocaleDateString();
+
+const savedDate =
+localStorage.getItem("todayDate");
+
+if(savedDate !== today){
+
+localStorage.setItem("todayDate", today);
+
+localStorage.setItem("todayCount", 0);
+
+}
+
+
+/* =========================================
+   تحميل الإحصائيات
+========================================= */
+
+document.getElementById("today-count").innerText =
+localStorage.getItem("todayCount") || 0;
+
+document.getElementById("first-count").innerText =
+localStorage.getItem("firstCount") || 0;
+
+document.getElementById("second-count").innerText =
+localStorage.getItem("secondCount") || 0;
+
+document.getElementById("third-count").innerText =
+localStorage.getItem("thirdCount") || 0;
+
+
+/* =========================================
+   تحديث الإحصائيات
+========================================= */
+
+function updateStats(stage){
+
+let first =
+Number(localStorage.getItem("firstCount")) || 0;
+
+let second =
+Number(localStorage.getItem("secondCount")) || 0;
+
+let third =
+Number(localStorage.getItem("thirdCount")) || 0;
+
+let todayCount =
+Number(localStorage.getItem("todayCount")) || 0;
+
+
+if(stage === "أول ثانوي"){
+
+first++;
+
+localStorage.setItem(
+"firstCount",
+first
+);
+
+}
+
+else if(stage === "ثاني ثانوي"){
+
+second++;
+
+localStorage.setItem(
+"secondCount",
+second
+);
+
+}
+
+else if(stage === "ثالث ثانوي"){
+
+third++;
+
+localStorage.setItem(
+"thirdCount",
+third
+);
+
+}
+
+
+/* عداد اليوم */
+
+todayCount++;
+
+localStorage.setItem(
+"todayCount",
+todayCount
+);
+
+
+/* تحديث الواجهة */
+
+document.getElementById("today-count").innerText =
+todayCount;
+
+document.getElementById("first-count").innerText =
+localStorage.getItem("firstCount") || 0;
+
+document.getElementById("second-count").innerText =
+localStorage.getItem("secondCount") || 0;
+
+document.getElementById("third-count").innerText =
+localStorage.getItem("thirdCount") || 0;
+
+}
+
+
+/* =========================================
+   الإرسال
+========================================= */
+
+function send(){
+
+const name =
+studentSelect.value.trim();
+
+const type =
+typeSelect.value.trim();
+
+
+/* التأكد من اختيار الطالبة */
+
+if(!name){
+
+alert("اختاري الطالبة أولاً");
+
+return;
+
+}
+
+
+/* التأكد من اختيار السبب */
+
+if(!type){
+
+alert("اختاري سبب الإرسال");
+
+return;
+
+}
+
+
+/* البحث عن الطالبة */
+
+const student =
+students.find(
+s => s.name === name
+);
+
+
+if(!student){
+
+alert("لم يتم العثور على بيانات الطالبة");
+
+return;
+
+}
+
+
+/* الرسالة */
+
+let message = "";
+
+
+/* غياب */
+
+if(type === "غياب"){
+
+message =
+
+`شريك النجاح ولي الأمر،
+
+نأمل إبلاغكم بأن الطالبة ${student.name}
+قد تغيبت اليوم عن المدرسة.
+
+يرجى تزويدنا بالعذر.
+
+شاكرين تعاونكم،
+
+متوسطة وثانوية الأندلس الأهلية.`;
+
+
+/* تأخر */
+
+}else if(type === "تأخر"){
+
+message =
+
+`نود إشعاركم بتأخر الطالبة
+${student.name} عن الحضور اليوم.
+
+شاكرين تعاونكم،
+
+متوسطة وثانوية الأندلس الأهلية.`;
+
+
+/* مخالفة */
+
+}else if(type === "مخالفة"){
+
+message =
+
+`السلام عليكم ورحمة الله وبركاته
+
+ولي أمر الطالبة ${student.name}
+
+نحيطكم علمًا بأن الطالبة قد قامت بمخالفة التعليمات المدرسية.
+
+نأمل منكم مراجعة المدرسة في أقرب وقت.
+
+شاكرين تعاونكم.
+
+متوسطة وثانوية الأندلس الأهلية`;
+
+
+/* شكر */
+
+}else{
+
+message =
+
+`كل الشكر والتقدير لكم على متابعتكم واهتمامكم بطالبتنا
+${student.name}
+
+دعمكم واهتمامكم هو أساس تميزنا.
+
+متوسطة وثانوية الأندلس الأهلية
+
+شكرًا لكم.`;
+
+}
+
+
+/* =========================================
+   تحديث الإحصائيات
+========================================= */
+
+updateStats(student.stage);
+
+
+/* =========================================
+   تسجيل الرسالة في Google Sheets
+========================================= */
+
+fetch(
+
+"https://script.google.com/macros/s/AKfycbwf5tlZTlcEzcruKF2vK4gMIoqCxKYZiRDJNrEN1HnvYwEWu7Mn3WTbWMWUhdYXPcxFAw/exec",
+
+{
+
+method:"POST",
+
+body:JSON.stringify({
+
+name:student.name,
+
+stage:student.stage,
+
+type:type
+
+})
+
+}
+
+);
+
+
+/* =========================================
+   فتح واتساب
+========================================= */
+
+const url =
+
+"https://api.whatsapp.com/send?phone="
+
++ student.phone
+
++ "&text="
+
++ encodeURIComponent(message);
+
+
+window.open(url,"_blank");
+
+}
+
+</script>
+
+</body>
+
+</html>
