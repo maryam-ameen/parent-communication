@@ -21,32 +21,23 @@ box-sizing:border-box;
 body{
 
 margin:0;
-
 font-family:"Cairo",sans-serif;
-
 direction:rtl;
-
 text-align:center;
-
 min-height:100vh;
-
 overflow-x:hidden;
 
 background-image:
 linear-gradient(
-rgba(255,255,255,0.285),
-rgba(255,255,255,0.158)
+rgba(255, 255, 255, 0.285),
+rgba(255, 255, 255, 0.158)
 ),
 url("https://lh3.googleusercontent.com/d/1EfrMWJS_ZlookD8ZiZE7krk_6x_bkwez");
 
 background-size:cover;
-
 background-position:center;
-
 background-repeat:no-repeat;
-
 background-attachment:fixed;
-
 }
 
 
@@ -57,15 +48,12 @@ background-attachment:fixed;
 min-height:100vh;
 
 display:flex;
-
 flex-direction:column;
 
 justify-content:center;
-
 align-items:center;
 
 padding:40px 20px;
-
 }
 
 
@@ -74,11 +62,9 @@ padding:40px 20px;
 .logo{
 
 width:170px;
-
 max-width:30vw;
 
 margin-bottom:20px;
-
 }
 
 
@@ -95,7 +81,6 @@ line-height:1.3;
 margin-bottom:30px;
 
 padding:0 10px;
-
 }
 
 
@@ -115,28 +100,48 @@ border-radius:28px;
 box-shadow:0 10px 35px rgba(0,0,0,0.12);
 
 backdrop-filter:blur(6px);
-
 }
+
 
 .stats-container{
 
 margin-top:20px;
-
 }
 
 
-/* =========================================
-   الخانات
-========================================= */
+/* الحقول */
 
 .search-box{
 
 position:relative;
 
 margin-bottom:18px;
+}
 
-width:100%;
 
+/* السهم الثابت */
+
+.search-box::before{
+
+content:"▼";
+
+position:absolute;
+
+left:18px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+font-size:17px;
+
+font-weight:bold;
+
+color:#1f3c88;
+
+z-index:5;
+
+pointer-events:none;
 }
 
 
@@ -159,13 +164,12 @@ color:#1f3c88;
 z-index:5;
 
 pointer-events:none;
-
 }
 
 
-/* الخانة */
+/* الحقول */
 
-.combo-input{
+input{
 
 width:100%;
 
@@ -175,9 +179,9 @@ border-radius:16px;
 
 border:1px solid #d7d7d7;
 
-padding-right:55px;
+padding-right:50px;
 
-padding-left:55px;
+padding-left:50px;
 
 font-size:17px;
 
@@ -185,178 +189,23 @@ font-family:"Cairo",sans-serif;
 
 background:white;
 
-direction:rtl;
-
-text-align:right;
-
-outline:none;
-
+transition:none;
 }
 
 
-/* عند الضغط */
+input:focus{
 
-.combo-input:focus{
+outline:none;
 
 border-color:#1f3c88;
 
 box-shadow:0 0 10px rgba(31,60,136,0.15);
-
 }
 
 
-/* =========================================
-   السهم الثابت
-========================================= */
+/* الزر */
 
-.combo-arrow{
-
-position:absolute;
-
-left:10px;
-
-top:50%;
-
-transform:translateY(-50%);
-
-width:42px;
-
-height:42px;
-
-border:none;
-
-border-radius:12px;
-
-background:transparent;
-
-color:#1f3c88;
-
-font-size:22px;
-
-font-weight:bold;
-
-cursor:pointer;
-
-z-index:10;
-
-margin:0;
-
-padding:0;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-}
-
-
-/* عند الضغط على السهم */
-
-.combo-arrow:hover{
-
-background:#f0f3ff;
-
-transform:translateY(-50%);
-
-box-shadow:none;
-
-}
-
-
-/* =========================================
-   القائمة
-========================================= */
-
-.combo-list{
-
-display:none;
-
-position:absolute;
-
-top:66px;
-
-right:0;
-
-left:0;
-
-background:white;
-
-border-radius:18px;
-
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-
-border:1px solid #e1e1e1;
-
-max-height:250px;
-
-overflow-y:auto;
-
-z-index:100;
-
-padding:8px;
-
-}
-
-
-/* تظهر القائمة */
-
-.combo-list.show{
-
-display:block;
-
-}
-
-
-/* عناصر القائمة */
-
-.combo-option{
-
-padding:13px 15px;
-
-font-size:17px;
-
-border-radius:12px;
-
-cursor:pointer;
-
-text-align:right;
-
-color:#333;
-
-}
-
-
-/* عند المرور */
-
-.combo-option:hover{
-
-background:#f1f3ff;
-
-color:#1f3c88;
-
-}
-
-
-/* لا توجد طالبات */
-
-.no-results{
-
-padding:14px;
-
-color:#888;
-
-font-size:15px;
-
-}
-
-
-/* =========================================
-   الزر
-========================================= */
-
-button.send-button{
+button{
 
 width:100%;
 
@@ -381,23 +230,20 @@ cursor:pointer;
 transition:0.25s;
 
 margin-top:10px;
-
 }
 
-button.send-button:hover{
+
+button:hover{
 
 background:#6c3eb7;
 
 transform:translateY(-2px);
 
 box-shadow:0 8px 18px rgba(108,62,183,0.25);
-
 }
 
 
-/* =========================================
-   رسائل اليوم
-========================================= */
+/* رسائل اليوم */
 
 .today-box{
 
@@ -414,7 +260,6 @@ font-size:22px;
 font-weight:bold;
 
 color:#1f3c88;
-
 }
 
 
@@ -423,13 +268,10 @@ color:#1f3c88;
 color:#6c3eb7;
 
 font-size:34px;
-
 }
 
 
-/* =========================================
-   الإحصائيات
-========================================= */
+/* الإحصائيات */
 
 .stats-box{
 
@@ -438,7 +280,6 @@ display:grid;
 grid-template-columns:repeat(3,1fr);
 
 gap:14px;
-
 }
 
 
@@ -451,7 +292,6 @@ padding:18px 10px;
 border-radius:18px;
 
 box-shadow:0 5px 12px rgba(0,0,0,0.05);
-
 }
 
 
@@ -462,7 +302,6 @@ margin:0;
 font-size:15px;
 
 color:#1f3c88;
-
 }
 
 
@@ -475,13 +314,10 @@ font-size:30px;
 font-weight:bold;
 
 color:#6c3eb7;
-
 }
 
 
-/* =========================================
-   الفوتر
-========================================= */
+/* الفوتر */
 
 .footer{
 
@@ -492,107 +328,132 @@ font-size:14px;
 color:#444;
 
 padding-bottom:15px;
-
 }
 
 
-/* =========================================
-   الجوال
-========================================= */
+/* ========================= */
+/* الجوال */
+/* ========================= */
 
 @media(max-width:600px){
 
 .overlay{
 
 padding:25px 14px;
-
 }
+
+
+/* اللوقو */
 
 .logo{
 
 width:170px;
-
-max-width:45vw;
-
 }
+
+
+/* العنوان */
 
 h1{
 
 font-size:40px;
-
-margin-bottom:25px;
-
 }
 
-.container,
+
+/* صندوق الاختيارات */
+
+.container{
+
+padding:22px;
+
+border-radius:24px;
+
+position:relative;
+
+z-index:100;
+
+overflow:visible;
+}
+
+
+/* صندوق الإحصائيات */
+
 .stats-container{
 
 padding:22px;
 
 border-radius:24px;
 
-width:94vw;
+position:relative;
 
+z-index:1;
 }
 
-.combo-input{
 
-height:58px;
+/* الحقول */
 
-font-size:16px;
-
-padding-right:52px;
-
-padding-left:50px;
-
-}
-
-.combo-arrow{
-
-width:40px;
-
-height:40px;
-
-font-size:21px;
-
-}
-
-.combo-list{
-
-top:64px;
-
-max-height:260px;
-
-}
-
-.combo-option{
-
-font-size:16px;
-
-padding:14px;
-
-}
-
-button.send-button{
+input{
 
 height:56px;
 
-font-size:18px;
+font-size:16px;
 
+padding-left:50px;
 }
+
+
+/* السهم */
+
+.search-box::before{
+
+left:18px;
+
+font-size:17px;
+
+z-index:20;
+}
+
+
+/* الأيقونة */
+
+.icon{
+
+right:16px;
+
+z-index:20;
+}
+
+
+/* الزر */
+
+button{
+
+height:56px;
+
+font-size:16px;
+}
+
+
+/* الإحصائيات */
 
 .stats-box{
 
 grid-template-columns:1fr;
+}
 
+
+/* منع صندوق الإحصائيات من تغطية القوائم */
+
+.stats-container{
+
+margin-top:20px;
 }
 
 }
 
 
-/* =========================================
-   الشاشات الكبيرة
-========================================= */
+/* ========================= */
+/* الشاشات الكبيرة */
+/* ========================= */
 
 @media(min-width:1400px){
 
@@ -600,13 +461,12 @@ grid-template-columns:1fr;
 .stats-container{
 
 max-width:600px;
-
 }
+
 
 h1{
 
 font-size:78px;
-
 }
 
 }
@@ -625,12 +485,8 @@ font-size:78px;
 <!-- اللوقو -->
 
 <img
-
 src="https://lh3.googleusercontent.com/d/1M2HSqXpnuZrGR_KJFeiIypmAepALG9bh"
-
 class="logo"
-
-
 >
 
 
@@ -643,297 +499,101 @@ class="logo"
 </h1>
 
 
-
-<!-- =========================================
-     صندوق الإرسال
-========================================= -->
+<!-- ========================= -->
+<!-- صندوق الإرسال -->
+<!-- ========================= -->
 
 <div class="container">
 
 
+<!-- المرحلة -->
 
-<!-- =========================================
-     المرحلة
-========================================= -->
+<div
+class="search-box"
+style="width:100%; max-width:470px;"
+>
 
-<div class="search-box">
-
-<span class="icon">
-
-📚
-
-</span>
-
+<span class="icon">📚</span>
 
 <input
-
-type="text"
-
+list="stage-list"
 id="stage"
-
-class="combo-input"
-
 placeholder="اختاري المرحلة"
-
 autocomplete="off"
-
-
->
-
-
-<button
-
-type="button"
-
-class="combo-arrow"
-
-onclick="toggleList('stage-list')"
-
->
-
-▼
-
-</button>
-
-
-<div
-
-id="stage-list"
-
-class="combo-list"
-
-
->
-
-<div
-
-class="combo-option"
-
-onclick="selectStage('أول ثانوي')"
-
->
-
-أول ثانوي
+/>
 
 </div>
 
 
-<div
+<datalist id="stage-list">
 
-class="combo-option"
+<option value="أول ثانوي">
 
-onclick="selectStage('ثاني ثانوي')"
+<option value="ثاني ثانوي">
 
->
+<option value="ثالث ثانوي">
 
-ثاني ثانوي
-
-</div>
-
-
-<div
-
-class="combo-option"
-
-onclick="selectStage('ثالث ثانوي')"
-
->
-
-ثالث ثانوي
-
-</div>
-
-
-</div>
-
-</div>
+</datalist>
 
 
 
-<!-- =========================================
-     الطالبة
-========================================= -->
+<!-- ========================= -->
+<!-- البحث عن الطالبة -->
+<!-- ========================= -->
 
 <div class="search-box">
 
-<span class="icon">
-
-🔎
-
-</span>
-
+<span class="icon">🔎</span>
 
 <input
-
-type="text"
-
+list="students-list"
 id="search"
-
-class="combo-input"
-
 placeholder="ابحثي عن الطالبة"
-
 autocomplete="off"
-
-
->
-
-
-<button
-
-type="button"
-
-class="combo-arrow"
-
-onclick="toggleStudentList()"
-
->
-
-▼
-
-</button>
-
-
-<div
-
-id="student-list"
-
-class="combo-list"
-
->
-
-<div class="no-results">
-
-اختاري المرحلة أولاً
-
-</div>
-
-</div>
+/>
 
 </div>
 
 
+<datalist id="students-list"></datalist>
 
-<!-- =========================================
-     سبب الإرسال
-========================================= -->
+
+
+<!-- ========================= -->
+<!-- سبب الإرسال -->
+<!-- ========================= -->
 
 <div class="search-box">
 
-<span class="icon">
-
-📩
-
-</span>
-
+<span class="icon">📩</span>
 
 <input
-
-type="text"
-
+list="type-list"
 id="type"
-
-class="combo-input"
-
 placeholder="سبب الإرسال"
-
 autocomplete="off"
-
-
->
-
-
-<button
-
-type="button"
-
-class="combo-arrow"
-
-onclick="toggleList('type-list')"
-
->
-
-▼
-
-</button>
-
-
-<div
-
-id="type-list"
-
-class="combo-list"
-
->
-
-
-<div
-
-class="combo-option"
-
-onclick="selectType('غياب')"
-
->
-
-غياب
+/>
 
 </div>
 
 
-<div
+<datalist id="type-list">
 
-class="combo-option"
+<option value="غياب">
 
-onclick="selectType('تأخر')"
+<option value="تأخر">
 
->
+<option value="شكر">
 
-تأخر
+<option value="مخالفة">
 
-</div>
-
-
-<div
-
-class="combo-option"
-
-onclick="selectType('شكر')"
-
->
-
-شكر
-
-</div>
-
-
-<div
-
-class="combo-option"
-
-onclick="selectType('مخالفة')"
-
->
-
-مخالفة
-
-</div>
-
-
-</div>
-
-</div>
+</datalist>
 
 
 
-<!-- الزر -->
+<!-- زر الإرسال -->
 
-<button
-
-class="send-button"
-
-onclick="send()"
-
->
+<button onclick="send()">
 
 إرسال الرسالة
 
@@ -944,9 +604,9 @@ onclick="send()"
 
 
 
-<!-- =========================================
-     الإحصائيات
-========================================= -->
+<!-- ========================= -->
+<!-- صندوق الإحصائيات -->
+<!-- ========================= -->
 
 <div class="stats-container">
 
@@ -955,13 +615,10 @@ onclick="send()"
 
 📅 رسائل اليوم:
 
-<span id="today-count">
-
-0
-
-</span>
+<span id="today-count">0</span>
 
 </div>
+
 
 
 <div class="stats-box">
@@ -984,6 +641,7 @@ onclick="send()"
 </div>
 
 
+
 <div class="stat-card">
 
 <h3>
@@ -999,6 +657,7 @@ onclick="send()"
 </p>
 
 </div>
+
 
 
 <div class="stat-card">
@@ -1040,17 +699,17 @@ onclick="send()"
 <script>
 
 
-/* =========================================
-   بيانات الطالبات
-========================================= */
+/* ========================= */
+/* البيانات */
+/* ========================= */
 
 let students = [];
 
 
 
-/* =========================================
-   قراءة Google Sheets
-========================================= */
+/* ========================= */
+/* قراءة Google Sheets */
+/* ========================= */
 
 Papa.parse(
 
@@ -1087,120 +746,41 @@ populateStudents();
 
 
 
-/* =========================================
-   فتح وإغلاق القوائم
-========================================= */
-
-function toggleList(id){
-
-const list = document.getElementById(id);
-
-document.querySelectorAll(".combo-list").forEach(item => {
-
-if(item !== list){
-
-item.classList.remove("show");
-
-}
-
-});
-
-list.classList.toggle("show");
-
-}
-
-
-
-/* =========================================
-   اختيار المرحلة
-========================================= */
-
-function selectStage(value){
-
-const input = document.getElementById("stage");
-
-input.value = value;
-
-document.getElementById("stage-list").classList.remove("show");
-
-document.getElementById("search").value = "";
-
-populateStudents();
-
-}
-
-
-
-/* =========================================
-   تعبئة أسماء الطالبات
-========================================= */
+/* ========================= */
+/* تعبئة الطالبات حسب المرحلة */
+/* ========================= */
 
 function populateStudents(){
 
-const list = document.getElementById("student-list");
-
-const selectedStage = document.getElementById("stage").value.trim();
-
-
-list.innerHTML = "";
+const datalist =
+document.getElementById("students-list");
 
 
-if(!selectedStage){
-
-list.innerHTML = `
-
-<div class="no-results">
-
-اختاري المرحلة أولاً
-
-</div>
-
-`;
-
-return;
-
-}
+datalist.innerHTML = "";
 
 
-const filteredStudents = students.filter(student =>
+const selectedStage =
+document.getElementById("stage").value.trim();
 
+
+students
+
+.filter(student =>
 student.stage === selectedStage
+)
 
-);
-
-
-if(filteredStudents.length === 0){
-
-list.innerHTML = `
-
-<div class="no-results">
-
-لا توجد طالبات لهذه المرحلة
-
-</div>
-
-`;
-
-return;
-
-}
+.forEach(student => {
 
 
-filteredStudents.forEach(student => {
+const option =
+document.createElement("option");
 
-const option = document.createElement("div");
 
-option.className = "combo-option";
+option.value =
+student.name;
 
-option.textContent = student.name;
 
-option.onclick = function(){
-
-selectStudent(student.name);
-
-};
-
-list.appendChild(option);
+datalist.appendChild(option);
 
 });
 
@@ -1208,208 +788,84 @@ list.appendChild(option);
 
 
 
-/* =========================================
-   اختيار الطالبة
-========================================= */
+/* ========================= */
+/* تحميل عداد اليوم */
+/* ========================= */
 
-function selectStudent(name){
+const today =
+new Date().toLocaleDateString();
 
-document.getElementById("search").value = name;
 
-document.getElementById("student-list").classList.remove("show");
-
-}
-
-
-
-/* =========================================
-   فتح قائمة الطالبات
-========================================= */
-
-function toggleStudentList(){
-
-const list = document.getElementById("student-list");
-
-
-document.querySelectorAll(".combo-list").forEach(item => {
-
-if(item !== list){
-
-item.classList.remove("show");
-
-}
-
-});
-
-
-populateStudents();
-
-list.classList.toggle("show");
-
-}
-
-
-
-/* =========================================
-   البحث والكتابة باسم الطالبة
-========================================= */
-
-document
-
-.getElementById("search")
-
-.addEventListener("input", function(){
-
-const value = this.value.trim().toLowerCase();
-
-const list = document.getElementById("student-list");
-
-const selectedStage = document.getElementById("stage").value.trim();
-
-
-if(!selectedStage){
-
-return;
-
-}
-
-
-const filteredStudents = students.filter(student =>
-
-student.stage === selectedStage &&
-
-student.name.toLowerCase().includes(value)
-
-);
-
-
-list.innerHTML = "";
-
-
-if(filteredStudents.length === 0){
-
-list.innerHTML = `
-
-<div class="no-results">
-
-لا توجد طالبة بهذا الاسم
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-filteredStudents.forEach(student => {
-
-const option = document.createElement("div");
-
-option.className = "combo-option";
-
-option.textContent = student.name;
-
-option.onclick = function(){
-
-selectStudent(student.name);
-
-};
-
-list.appendChild(option);
-
-});
-
-
-list.classList.add("show");
-
-});
-
-
-
-/* =========================================
-   اختيار سبب الإرسال
-========================================= */
-
-function selectType(value){
-
-document.getElementById("type").value = value;
-
-document.getElementById("type-list").classList.remove("show");
-
-}
-
-
-
-/* =========================================
-   تحميل عداد اليوم
-========================================= */
-
-const today = new Date().toLocaleDateString();
-
-const savedDate = localStorage.getItem("todayDate");
+const savedDate =
+localStorage.getItem("todayDate");
 
 
 if(savedDate !== today){
 
-localStorage.setItem("todayDate", today);
+localStorage.setItem(
+"todayDate",
+today
+);
 
-localStorage.setItem("todayCount", 0);
+localStorage.setItem(
+"todayCount",
+0
+);
 
 }
 
 
 
-/* =========================================
-   تحميل الإحصائيات
-========================================= */
+/* ========================= */
+/* تحميل الإحصائيات */
+/* ========================= */
 
 document.getElementById("today-count").innerText =
-
 localStorage.getItem("todayCount") || 0;
 
 
 document.getElementById("first-count").innerText =
-
 localStorage.getItem("firstCount") || 0;
 
 
 document.getElementById("second-count").innerText =
-
 localStorage.getItem("secondCount") || 0;
 
 
 document.getElementById("third-count").innerText =
-
 localStorage.getItem("thirdCount") || 0;
 
 
 
-/* =========================================
-   تحديث الإحصائيات
-========================================= */
+/* ========================= */
+/* تحديث الإحصائيات */
+/* ========================= */
 
 function updateStats(stage){
 
-let first =
 
-Number(localStorage.getItem("firstCount")) || 0;
+let first =
+Number(
+localStorage.getItem("firstCount")
+) || 0;
 
 
 let second =
-
-Number(localStorage.getItem("secondCount")) || 0;
+Number(
+localStorage.getItem("secondCount")
+) || 0;
 
 
 let third =
-
-Number(localStorage.getItem("thirdCount")) || 0;
+Number(
+localStorage.getItem("thirdCount")
+) || 0;
 
 
 let todayCount =
-
-Number(localStorage.getItem("todayCount")) || 0;
+Number(
+localStorage.getItem("todayCount")
+) || 0;
 
 
 
@@ -1417,7 +873,10 @@ if(stage === "أول ثانوي"){
 
 first++;
 
-localStorage.setItem("firstCount", first);
+localStorage.setItem(
+"firstCount",
+first
+);
 
 }
 
@@ -1426,7 +885,10 @@ else if(stage === "ثاني ثانوي"){
 
 second++;
 
-localStorage.setItem("secondCount", second);
+localStorage.setItem(
+"secondCount",
+second
+);
 
 }
 
@@ -1435,82 +897,72 @@ else if(stage === "ثالث ثانوي"){
 
 third++;
 
-localStorage.setItem("thirdCount", third);
+localStorage.setItem(
+"thirdCount",
+third
+);
 
 }
 
 
 todayCount++;
 
-localStorage.setItem("todayCount", todayCount);
+
+localStorage.setItem(
+"todayCount",
+todayCount
+);
 
 
-document.getElementById("today-count").innerText = todayCount;
+
+document.getElementById("today-count").innerText =
+todayCount;
 
 
 document.getElementById("first-count").innerText =
-
 localStorage.getItem("firstCount") || 0;
 
 
 document.getElementById("second-count").innerText =
-
 localStorage.getItem("secondCount") || 0;
 
 
 document.getElementById("third-count").innerText =
-
 localStorage.getItem("thirdCount") || 0;
 
 }
 
 
 
-/* =========================================
-   الإرسال
-========================================= */
+/* ========================= */
+/* الإرسال */
+/* ========================= */
 
 function send(){
 
 
 const name =
-
-document.getElementById("search").value.trim();
+document
+.getElementById("search")
+.value
+.trim();
 
 
 const type =
-
-document.getElementById("type").value.trim();
-
-
-const stage =
-
-document.getElementById("stage").value.trim();
+document
+.getElementById("type")
+.value
+.trim();
 
 
-
-/* التأكد من المرحلة */
-
-if(!stage){
-
-alert("اختاري المرحلة أولاً");
-
-return;
-
-}
-
-
-
-/* التأكد من الطالبة */
-
-const student = students.find(s =>
-
-s.name === name &&
-
-s.stage === stage
-
+const student =
+students.find(
+s => s.name === name
 );
 
+
+
+/* التحقق من الطالبة */
 
 if(!student){
 
@@ -1522,7 +974,7 @@ return;
 
 
 
-/* التأكد من السبب */
+/* التحقق من السبب */
 
 if(!type){
 
@@ -1538,9 +990,9 @@ let message = "";
 
 
 
-/* =========================================
-   غياب
-========================================= */
+/* ========================= */
+/* غياب */
+/* ========================= */
 
 if(type === "غياب"){
 
@@ -1557,15 +1009,13 @@ message =
 
 متوسطة وثانوية الأندلس الأهلية.`;
 
-}
 
 
+/* ========================= */
+/* تأخر */
+/* ========================= */
 
-/* =========================================
-   تأخر
-========================================= */
-
-else if(type === "تأخر"){
+}else if(type === "تأخر"){
 
 message =
 
@@ -1576,15 +1026,13 @@ ${student.name} عن الحضور اليوم.
 
 متوسطة وثانوية الأندلس الأهلية.`;
 
-}
 
 
+/* ========================= */
+/* مخالفة */
+/* ========================= */
 
-/* =========================================
-   مخالفة
-========================================= */
-
-else if(type === "مخالفة"){
+}else if(type === "مخالفة"){
 
 message =
 
@@ -1600,15 +1048,13 @@ message =
 
 متوسطة وثانوية الأندلس الأهلية`;
 
-}
 
 
+/* ========================= */
+/* شكر */
+/* ========================= */
 
-/* =========================================
-   شكر
-========================================= */
-
-else if(type === "شكر"){
+}else{
 
 message =
 
@@ -1625,15 +1071,31 @@ ${student.name}
 
 
 
+/* ========================= */
 /* تحديث الإحصائيات */
+/* ========================= */
 
 updateStats(student.stage);
 
 
 
-/* =========================================
-   تسجيل الإرسال في Google Apps Script
-========================================= */
+/* ========================= */
+/* فتح واتساب */
+/* ========================= */
+
+const url =
+
+"https://api.whatsapp.com/send?phone="
++
+student.phone
++
+"&text="
++
+encodeURIComponent(message);
+
+
+
+/* تسجيل عملية الإرسال */
 
 fetch(
 
@@ -1659,70 +1121,29 @@ type:type
 
 
 
-/* =========================================
-   فتح واتساب
-========================================= */
+/* فتح واتساب */
 
-const url =
-
-"https://api.whatsapp.com/send?phone="
-
-+
-
-student.phone
-
-+
-
-"&text="
-
-+
-
-encodeURIComponent(message);
-
-
-
-window.open(url,"_blank");
-
+window.open(
+url,
+"_blank"
+);
 
 }
 
 
 
-/* =========================================
-   تغيير المرحلة بالكتابة
-========================================= */
+/* ========================= */
+/* عند تغيير المرحلة */
+/* ========================= */
 
 document
 
 .getElementById("stage")
 
-.addEventListener("input", function(){
-
-document.getElementById("search").value = "";
-
-populateStudents();
-
-});
-
-
-
-/* =========================================
-   إغلاق القوائم عند الضغط خارجها
-========================================= */
-
-document.addEventListener("click", function(event){
-
-if(!event.target.closest(".search-box")){
-
-document.querySelectorAll(".combo-list").forEach(list => {
-
-list.classList.remove("show");
-
-});
-
-}
-
-});
+.addEventListener(
+"input",
+populateStudents
+);
 
 
 </script>
