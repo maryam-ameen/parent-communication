@@ -13,13 +13,21 @@
 href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap"
 rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+<script
+src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js">
+</script>
+
 
 <style>
+
+/* =========================
+   الأساسيات
+========================= */
 
 *{
 box-sizing:border-box;
 }
+
 
 body{
 
@@ -36,10 +44,12 @@ min-height:100vh;
 overflow-x:hidden;
 
 background-image:
+
 linear-gradient(
 rgba(255,255,255,0.285),
 rgba(255,255,255,0.158)
 ),
+
 url("https://lh3.googleusercontent.com/d/1EfrMWJS_ZlookD8ZiZE7krk_6x_bkwez");
 
 background-size:cover;
@@ -53,7 +63,9 @@ background-attachment:fixed;
 }
 
 
-/* الطبقة الرئيسية */
+/* =========================
+   الطبقة الرئيسية
+========================= */
 
 .overlay{
 
@@ -72,7 +84,9 @@ padding:40px 20px;
 }
 
 
-/* الشعار */
+/* =========================
+   الشعار
+========================= */
 
 .logo{
 
@@ -85,7 +99,9 @@ margin-bottom:20px;
 }
 
 
-/* العنوان */
+/* =========================
+   العنوان
+========================= */
 
 h1{
 
@@ -102,7 +118,9 @@ padding:0 10px;
 }
 
 
-/* الصناديق */
+/* =========================
+   الصناديق
+========================= */
 
 .container,
 .stats-container{
@@ -115,7 +133,9 @@ padding:30px;
 
 border-radius:28px;
 
-box-shadow:0 10px 35px rgba(0,0,0,0.12);
+box-shadow:
+
+0 10px 35px rgba(0,0,0,0.12);
 
 backdrop-filter:blur(6px);
 
@@ -129,7 +149,9 @@ margin-top:20px;
 }
 
 
-/* الحقول */
+/* =========================
+   الحقول
+========================= */
 
 .search-box{
 
@@ -156,7 +178,7 @@ font-size:18px;
 
 color:#1f3c88;
 
-z-index:2;
+z-index:5;
 
 pointer-events:none;
 
@@ -185,8 +207,6 @@ background:white;
 
 color:#333;
 
-transition:none;
-
 }
 
 
@@ -196,23 +216,274 @@ outline:none;
 
 border-color:#1f3c88;
 
-box-shadow:0 0 10px rgba(31,60,136,0.15);
+box-shadow:
+
+0 0 10px rgba(31,60,136,0.15);
 
 }
 
 
-/* إخفاء سهم datalist الافتراضي في بعض المتصفحات */
+/* =========================
+   خانة اختيار الطالبات
+========================= */
 
-input::-webkit-calendar-picker-indicator{
+.student-picker{
 
-opacity:0.6;
+position:relative;
+
+width:100%;
+
+}
+
+
+/* مربع الإدخال */
+
+.student-input-box{
+
+position:relative;
+
+width:100%;
+
+}
+
+
+/* السهم */
+
+.dropdown-arrow{
+
+position:absolute;
+
+left:15px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+font-size:18px;
+
+color:#1f3c88;
 
 cursor:pointer;
 
+z-index:10;
+
+user-select:none;
+
+padding:8px;
+
 }
 
 
-/* الزر */
+/* =========================
+   القائمة
+========================= */
+
+.student-dropdown{
+
+display:none;
+
+position:absolute;
+
+top:65px;
+
+right:0;
+
+left:0;
+
+background:white;
+
+border:1px solid #ddd;
+
+border-radius:16px;
+
+box-shadow:
+
+0 10px 30px rgba(0,0,0,0.15);
+
+z-index:1000;
+
+overflow:hidden;
+
+text-align:right;
+
+}
+
+
+.student-dropdown.show{
+
+display:block;
+
+}
+
+
+/* =========================
+   البحث داخل القائمة
+========================= */
+
+.student-search{
+
+padding:12px;
+
+background:#fafafa;
+
+border-bottom:1px solid #eee;
+
+}
+
+
+.student-search input{
+
+height:48px;
+
+font-size:15px;
+
+padding-right:15px;
+
+padding-left:15px;
+
+}
+
+
+/* =========================
+   قائمة الأسماء
+========================= */
+
+.student-list{
+
+max-height:280px;
+
+overflow-y:auto;
+
+-webkit-overflow-scrolling:touch;
+
+}
+
+
+.student-item{
+
+padding:13px 18px;
+
+font-size:15px;
+
+cursor:pointer;
+
+border-bottom:1px solid #f1f1f1;
+
+background:white;
+
+transition:background 0.15s;
+
+}
+
+
+.student-item:hover{
+
+background:#f4f5ff;
+
+}
+
+
+.student-item.selected{
+
+background:#eef0ff;
+
+color:#1f3c88;
+
+font-weight:bold;
+
+}
+
+
+.student-item.selected::before{
+
+content:"✓";
+
+float:left;
+
+font-size:18px;
+
+color:#6c3eb7;
+
+}
+
+
+/* لا توجد طالبات */
+
+.no-students{
+
+padding:20px;
+
+text-align:center;
+
+color:#777;
+
+font-size:14px;
+
+}
+
+
+/* =========================
+   الطالبات المختارات
+========================= */
+
+.selected-students{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:8px;
+
+margin-top:10px;
+
+margin-bottom:5px;
+
+justify-content:flex-start;
+
+}
+
+
+.selected-student{
+
+display:flex;
+
+align-items:center;
+
+gap:6px;
+
+background:#f0efff;
+
+color:#1f3c88;
+
+border-radius:20px;
+
+padding:6px 11px;
+
+font-size:13px;
+
+font-weight:600;
+
+}
+
+
+.remove-student{
+
+cursor:pointer;
+
+color:#6c3eb7;
+
+font-size:18px;
+
+font-weight:bold;
+
+line-height:1;
+
+}
+
+
+/* =========================
+   الزر
+========================= */
 
 button{
 
@@ -249,12 +520,16 @@ background:#6c3eb7;
 
 transform:translateY(-2px);
 
-box-shadow:0 8px 18px rgba(108,62,183,0.25);
+box-shadow:
+
+0 8px 18px rgba(108,62,183,0.25);
 
 }
 
 
-/* رسائل اليوم */
+/* =========================
+   رسائل اليوم
+========================= */
 
 .today-box{
 
@@ -284,7 +559,9 @@ font-size:34px;
 }
 
 
-/* الإحصائيات */
+/* =========================
+   الإحصائيات
+========================= */
 
 .stats-box{
 
@@ -305,7 +582,9 @@ padding:18px 10px;
 
 border-radius:18px;
 
-box-shadow:0 5px 12px rgba(0,0,0,0.05);
+box-shadow:
+
+0 5px 12px rgba(0,0,0,0.05);
 
 }
 
@@ -334,7 +613,9 @@ color:#6c3eb7;
 }
 
 
-/* الفوتر */
+/* =========================
+   الفوتر
+========================= */
 
 .footer{
 
@@ -364,22 +645,20 @@ padding:25px 14px;
 
 .logo{
 
-width:150px;
+width:170px;
 
 max-width:55vw;
-
-margin-bottom:15px;
 
 }
 
 
 h1{
 
-font-size:34px;
+font-size:40px;
 
 line-height:1.35;
 
-margin-bottom:22px;
+margin-bottom:25px;
 
 }
 
@@ -410,6 +689,29 @@ button{
 height:56px;
 
 font-size:17px;
+
+}
+
+
+.student-dropdown{
+
+top:62px;
+
+}
+
+
+.student-list{
+
+max-height:260px;
+
+}
+
+
+.student-item{
+
+padding:13px 15px;
+
+font-size:14px;
 
 }
 
@@ -456,7 +758,9 @@ font-size:78px;
 <div class="overlay">
 
 
-<!-- الشعار -->
+<!-- =========================
+     الشعار
+========================= -->
 
 <img
 
@@ -467,7 +771,9 @@ class="logo"
 >
 
 
-<!-- العنوان -->
+<!-- =========================
+     العنوان
+========================= -->
 
 <h1>
 
@@ -483,7 +789,9 @@ class="logo"
 <div class="container">
 
 
-<!-- المرحلة -->
+<!-- =========================
+     المرحلة
+========================= -->
 
 <div class="search-box">
 
@@ -516,20 +824,71 @@ autocomplete="off"
 
 
 <!-- =========================
-     الطالبة
+     اختيار الطالبات
 ========================= -->
 
-<div class="search-box">
+<div class="search-box student-picker">
 
-<span class="icon">🔎</span>
+
+<div class="student-input-box">
+
+
+<span class="icon">
+
+🔎
+
+</span>
+
 
 <input
 
-list="students-list"
+id="studentInput"
 
-id="search"
+placeholder="اكتبي اسم الطالبة أو اختاري من السهم"
 
-placeholder="اكتبي اسم الطالبة أو اختاري من القائمة"
+autocomplete="off"
+
+>
+
+
+<span
+
+class="dropdown-arrow"
+
+id="dropdownArrow"
+
+>
+
+▼
+
+</span>
+
+
+</div>
+
+
+<!-- =========================
+     القائمة المنسدلة
+========================= -->
+
+<div
+
+class="student-dropdown"
+
+id="studentDropdown"
+
+>
+
+
+<!-- البحث داخل القائمة -->
+
+<div class="student-search">
+
+<input
+
+id="studentSearch"
+
+placeholder="ابحثي عن الطالبة"
 
 autocomplete="off"
 
@@ -538,7 +897,42 @@ autocomplete="off"
 </div>
 
 
-<datalist id="students-list"></datalist>
+<!-- قائمة الطالبات -->
+
+<div
+
+class="student-list"
+
+id="studentList"
+
+>
+
+<div class="no-students">
+
+اختاري المرحلة أولاً
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     الطالبات المختارات
+========================= -->
+
+<div
+
+class="selected-students"
+
+id="selectedStudents"
+
+></div>
+
+
+</div>
 
 
 <!-- =========================
@@ -547,7 +941,11 @@ autocomplete="off"
 
 <div class="search-box">
 
-<span class="icon">📩</span>
+<span class="icon">
+
+📩
+
+</span>
 
 <input
 
@@ -577,7 +975,9 @@ autocomplete="off"
 </datalist>
 
 
-<!-- الزر -->
+<!-- =========================
+     زر الإرسال
+========================= -->
 
 <button onclick="send()">
 
@@ -668,7 +1068,9 @@ autocomplete="off"
 </div>
 
 
-<!-- الفوتر -->
+<!-- =========================
+     الفوتر
+========================= -->
 
 <div class="footer">
 
@@ -689,9 +1091,50 @@ autocomplete="off"
 
 let students = [];
 
+let selectedStudents = [];
+
 
 /* =========================
-   قراءة Google Sheets
+   عناصر الصفحة
+========================= */
+
+const stageInput =
+
+document.getElementById("stage");
+
+
+const studentInput =
+
+document.getElementById("studentInput");
+
+
+const studentSearch =
+
+document.getElementById("studentSearch");
+
+
+const studentDropdown =
+
+document.getElementById("studentDropdown");
+
+
+const studentList =
+
+document.getElementById("studentList");
+
+
+const selectedStudentsBox =
+
+document.getElementById("selectedStudents");
+
+
+const dropdownArrow =
+
+document.getElementById("dropdownArrow");
+
+
+/* =========================
+   تحميل بيانات Google Sheets
 ========================= */
 
 Papa.parse(
@@ -714,28 +1157,36 @@ results.data
 
 name:
 
-student.name?.trim(),
+student.name
+?.trim(),
 
 phone:
 
-student.phone?.trim(),
+student.phone
+?.trim(),
 
 id:
 
-student.id?.trim(),
+student.id
+?.trim(),
 
 stage:
 
-student.stage?.trim()
+student.stage
+?.trim()
 
 }))
 
-.filter(student => student.name);
+.filter(student =>
+
+student.name
+
+);
 
 
-/* بعد تحميل البيانات */
+/* مهم جدًا */
 
-populateStudents();
+renderStudentList();
 
 }
 
@@ -745,69 +1196,297 @@ populateStudents();
 
 
 /* =========================
-   تعبئة أسماء الطالبات
+   تغيير المرحلة
 ========================= */
 
-function populateStudents(){
+stageInput.addEventListener(
 
-const datalist =
+"input",
 
-document.getElementById(
+function(){
 
-"students-list"
+selectedStudents = [];
+
+renderSelectedStudents();
+
+studentInput.value = "";
+
+studentSearch.value = "";
+
+renderStudentList();
+
+}
 
 );
 
 
-datalist.innerHTML = "";
+stageInput.addEventListener(
+
+"change",
+
+function(){
+
+selectedStudents = [];
+
+renderSelectedStudents();
+
+studentInput.value = "";
+
+studentSearch.value = "";
+
+renderStudentList();
+
+}
+
+);
+
+
+/* =========================
+   فتح القائمة
+========================= */
+
+function openStudentDropdown(){
+
+studentDropdown.classList.add("show");
+
+studentSearch.value = "";
+
+renderStudentList();
+
+}
+
+
+/* =========================
+   السهم
+========================= */
+
+dropdownArrow.addEventListener(
+
+"click",
+
+function(event){
+
+event.stopPropagation();
+
+
+if(
+
+studentDropdown.classList.contains("show")
+
+){
+
+studentDropdown.classList.remove("show");
+
+}
+
+else{
+
+openStudentDropdown();
+
+}
+
+}
+
+);
+
+
+/* =========================
+   الضغط على خانة الطالب
+========================= */
+
+studentInput.addEventListener(
+
+"focus",
+
+function(){
+
+openStudentDropdown();
+
+}
+
+);
+
+
+/* =========================
+   الكتابة في خانة الطالب
+========================= */
+
+studentInput.addEventListener(
+
+"input",
+
+function(){
+
+const text =
+
+studentInput.value.trim();
+
+
+studentDropdown.classList.add("show");
+
+
+studentSearch.value = text;
+
+
+renderStudentList();
+
+}
+
+);
+
+
+/* =========================
+   البحث داخل القائمة
+========================= */
+
+studentSearch.addEventListener(
+
+"input",
+
+function(){
+
+renderStudentList();
+
+}
+
+);
+
+
+/* =========================
+   عرض قائمة الطالبات
+========================= */
+
+function renderStudentList(){
 
 
 const selectedStage =
 
-document.getElementById(
-
-"stage"
-
-).value.trim();
+stageInput.value.trim();
 
 
-/* إذا لم يتم اختيار المرحلة */
+const searchText =
+
+studentSearch.value
+
+.trim()
+
+.toLowerCase();
+
+
+studentList.innerHTML = "";
+
+
+/* لا توجد مرحلة */
 
 if(!selectedStage){
+
+studentList.innerHTML =
+
+'<div class="no-students">اختاري المرحلة أولاً</div>';
 
 return;
 
 }
 
 
-/* الطالبات الخاصة بالمرحلة */
+/* فلترة المرحلة */
 
-students
+let filteredStudents =
 
-.filter(student =>
+students.filter(student =>
 
 student.stage === selectedStage
-
-)
-
-.forEach(student => {
-
-
-const option =
-
-document.createElement(
-
-"option"
 
 );
 
 
-option.value =
+/* البحث بالاسم */
+
+if(searchText){
+
+filteredStudents =
+
+filteredStudents.filter(student =>
+
+student.name
+
+.toLowerCase()
+
+.includes(searchText)
+
+);
+
+}
+
+
+/* لا توجد نتائج */
+
+if(filteredStudents.length === 0){
+
+studentList.innerHTML =
+
+'<div class="no-students">لا توجد طالبة بهذا الاسم</div>';
+
+return;
+
+}
+
+
+/* عرض الطالبات */
+
+filteredStudents.forEach(student => {
+
+
+const item =
+
+document.createElement("div");
+
+
+item.className =
+
+"student-item";
+
+
+/* هل مختارة؟ */
+
+if(
+
+selectedStudents.some(
+
+s => s.id === student.id
+
+)
+
+){
+
+item.classList.add("selected");
+
+}
+
+
+item.textContent =
 
 student.name;
 
 
-datalist.appendChild(option);
+/* الضغط */
+
+item.addEventListener(
+
+"click",
+
+function(event){
+
+event.stopPropagation();
+
+toggleStudent(student);
+
+}
+
+);
+
+
+studentList.appendChild(item);
 
 });
 
@@ -815,61 +1494,176 @@ datalist.appendChild(option);
 
 
 /* =========================
-   عند تغيير المرحلة
+   اختيار أو إلغاء طالبة
 ========================= */
 
-document
-
-.getElementById("stage")
-
-.addEventListener(
-
-"input",
-
-function(){
-
-/* مسح الطالبة السابقة */
-
-document.getElementById(
-
-"search"
-
-).value = "";
+function toggleStudent(student){
 
 
-/* تحديث القائمة */
+const existingIndex =
 
-populateStudents();
+selectedStudents.findIndex(
+
+s =>
+
+s.id === student.id
+
+);
+
+
+if(existingIndex !== -1){
+
+/* إلغاء */
+
+selectedStudents.splice(
+
+existingIndex,
+
+1
+
+);
+
+}
+
+else{
+
+/* إضافة */
+
+selectedStudents.push(student);
+
+}
+
+
+/* تحديث */
+
+renderSelectedStudents();
+
+renderStudentList();
+
+
+/* تنظيف البحث */
+
+studentInput.value = "";
+
+studentSearch.value = "";
+
+}
+
+
+/* =========================
+   عرض الطالبات المختارات
+========================= */
+
+function renderSelectedStudents(){
+
+
+selectedStudentsBox.innerHTML = "";
+
+
+selectedStudents.forEach(student => {
+
+
+const tag =
+
+document.createElement("div");
+
+
+tag.className =
+
+"selected-student";
+
+
+const name =
+
+document.createElement("span");
+
+
+name.textContent =
+
+student.name;
+
+
+const remove =
+
+document.createElement("span");
+
+
+remove.className =
+
+"remove-student";
+
+
+remove.textContent =
+
+"×";
+
+
+remove.addEventListener(
+
+"click",
+
+function(event){
+
+event.stopPropagation();
+
+
+selectedStudents =
+
+selectedStudents.filter(
+
+s =>
+
+s.id !== student.id
+
+);
+
+
+renderSelectedStudents();
+
+renderStudentList();
 
 }
 
 );
 
 
-/* أيضًا عند التغيير */
+tag.appendChild(name);
 
-document
-
-.getElementById("stage")
-
-.addEventListener(
-
-"change",
-
-function(){
-
-document.getElementById(
-
-"search"
-
-).value = "";
+tag.appendChild(remove);
 
 
-populateStudents();
+selectedStudentsBox.appendChild(tag);
+
+});
 
 }
 
-);
+
+/* =========================
+   إغلاق القائمة
+========================= */
+
+document.addEventListener(
+
+"click",
+
+function(event){
+
+if(
+
+!event.target.closest(
+
+".student-picker"
+
+)
+
+){
+
+studentDropdown.classList.remove("show");
+
+}
+
+});
 
 
 /* =========================
@@ -883,11 +1677,7 @@ new Date().toLocaleDateString();
 
 const savedDate =
 
-localStorage.getItem(
-
-"todayDate"
-
-);
+localStorage.getItem("todayDate");
 
 
 if(savedDate !== today){
@@ -972,6 +1762,7 @@ localStorage.getItem(
 ========================= */
 
 function updateStats(stage){
+
 
 let first =
 
@@ -1076,7 +1867,7 @@ third
 }
 
 
-/* رسائل اليوم */
+/* اليوم */
 
 todayCount++;
 
@@ -1143,74 +1934,11 @@ localStorage.getItem(
 
 
 /* =========================
-   الإرسال
-========================= */
-
-function send(){
-
-
-const name =
-
-document.getElementById(
-
-"search"
-
-).value.trim();
-
-
-const type =
-
-document.getElementById(
-
-"type"
-
-).value.trim();
-
-
-/* البحث عن الطالبة */
-
-const student =
-
-students.find(
-
-s => s.name === name
-
-);
-
-
-/* التأكد من الطالبة */
-
-if(!student){
-
-alert(
-
-"اختاري الطالبة أولاً"
-
-);
-
-return;
-
-}
-
-
-/* التأكد من السبب */
-
-if(!type){
-
-alert(
-
-"اختاري سبب الإرسال"
-
-);
-
-return;
-
-}
-
-
-/* =========================
    إنشاء الرسالة
 ========================= */
+
+function createMessage(student,type){
+
 
 let message = "";
 
@@ -1290,9 +2018,91 @@ ${student.name}
 }
 
 
+return message;
+
+}
+
+
+/* =========================
+   الإرسال
+========================= */
+
+function send(){
+
+
+const type =
+
+document.getElementById(
+
+"type"
+
+).value.trim();
+
+
+const stage =
+
+stageInput.value.trim();
+
+
+/* المرحلة */
+
+if(!stage){
+
+alert(
+
+"اختاري المرحلة أولاً"
+
+);
+
+return;
+
+}
+
+
+/* الطالبات */
+
+if(selectedStudents.length === 0){
+
+alert(
+
+"اختاري طالبة واحدة على الأقل"
+
+);
+
+return;
+
+}
+
+
+/* السبب */
+
+if(!type){
+
+alert(
+
+"اختاري سبب الإرسال"
+
+);
+
+return;
+
+}
+
+
+/* نسخ القائمة */
+
+const studentsToSend =
+
+[...selectedStudents];
+
+
 /* =========================
    تحديث الإحصائيات
 ========================= */
+
+studentsToSend.forEach(
+
+student => {
 
 updateStats(
 
@@ -1300,10 +2110,19 @@ student.stage
 
 );
 
+}
+
+);
+
 
 /* =========================
-   إرسال البيانات إلى Google
+   تسجيل العمليات في Google
 ========================= */
+
+studentsToSend.forEach(
+
+student => {
+
 
 fetch(
 
@@ -1333,10 +2152,55 @@ type
 
 );
 
+}
+
+);
+
 
 /* =========================
    فتح واتساب
 ========================= */
+
+let currentIndex = 0;
+
+
+function openNextWhatsApp(){
+
+
+if(
+
+currentIndex >= studentsToSend.length
+
+){
+
+alert(
+
+"تم تجهيز جميع الرسائل المحددة."
+
+);
+
+return;
+
+}
+
+
+const student =
+
+studentsToSend[currentIndex];
+
+
+const message =
+
+createMessage(
+
+student,
+
+type
+
+);
+
+
+/* رقم ولي الأمر */
 
 const phone =
 
@@ -1354,6 +2218,27 @@ student.phone || ""
 
 );
 
+
+/* لا يوجد رقم */
+
+if(!phone){
+
+alert(
+
+`لا يوجد رقم جوال مسجل للطالبة: ${student.name}`
+
+);
+
+currentIndex++;
+
+openNextWhatsApp();
+
+return;
+
+}
+
+
+/* رابط واتساب */
 
 const url =
 
@@ -1376,6 +2261,8 @@ message
 );
 
 
+/* فتح */
+
 window.open(
 
 url,
@@ -1383,6 +2270,72 @@ url,
 "_blank"
 
 );
+
+
+currentIndex++;
+
+
+/* طالبة أخرى */
+
+if(
+
+currentIndex < studentsToSend.length
+
+){
+
+
+setTimeout(
+
+function(){
+
+
+const nextStudent =
+
+studentsToSend[currentIndex];
+
+
+const continueSending =
+
+confirm(
+
+`تم تجهيز رسالة ${student.name}.\n\nهل تريدين الانتقال إلى رسالة ${nextStudent.name}؟`
+
+);
+
+
+if(continueSending){
+
+openNextWhatsApp();
+
+}
+
+},
+
+700
+
+);
+
+}
+
+}
+
+
+openNextWhatsApp();
+
+
+/* =========================
+   تنظيف الاختيارات
+========================= */
+
+selectedStudents = [];
+
+renderSelectedStudents();
+
+studentInput.value = "";
+
+studentSearch.value = "";
+
+renderStudentList();
 
 }
 
