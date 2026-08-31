@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>نظام التواصل مع أولياء الأمور</title>
 
-<link
-href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
 
@@ -49,7 +46,6 @@ background-position:center;
 background-repeat:no-repeat;
 
 background-attachment:fixed;
-
 }
 
 
@@ -68,20 +64,18 @@ justify-content:center;
 align-items:center;
 
 padding:40px 20px;
-
 }
 
 
-/* الشعار */
+/* اللوقو */
 
 .logo{
 
 width:170px;
 
-max-width:40vw;
+max-width:30vw;
 
 margin-bottom:20px;
-
 }
 
 
@@ -95,10 +89,9 @@ font-size:clamp(32px,6vw,72px);
 
 line-height:1.3;
 
-margin:0 0 30px 0;
+margin-bottom:30px;
 
 padding:0 10px;
-
 }
 
 
@@ -118,17 +111,16 @@ border-radius:28px;
 box-shadow:0 10px 35px rgba(0,0,0,0.12);
 
 backdrop-filter:blur(6px);
-
 }
+
 
 .stats-container{
 
 margin-top:20px;
-
 }
 
 
-/* الحقول */
+/* الخانات */
 
 .search-box{
 
@@ -137,9 +129,10 @@ position:relative;
 width:100%;
 
 margin-bottom:18px;
-
 }
 
+
+/* الأيقونة */
 
 .icon{
 
@@ -155,14 +148,39 @@ font-size:18px;
 
 color:#1f3c88;
 
-z-index:5;
+z-index:3;
 
 pointer-events:none;
-
 }
 
 
-/* الحقل */
+/* السهم */
+
+.dropdown-arrow{
+
+position:absolute;
+
+left:17px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+font-size:25px;
+
+font-weight:bold;
+
+color:#1f3c88;
+
+z-index:3;
+
+pointer-events:none;
+
+line-height:1;
+}
+
+
+/* الحقول */
 
 input{
 
@@ -186,247 +204,33 @@ background:white;
 
 color:#333;
 
+outline:none;
+
+-webkit-appearance:none;
+
+appearance:none;
+}
+
+
+input::placeholder{
+
+color:#999;
+
+opacity:1;
 }
 
 
 input:focus{
 
-outline:none;
-
 border-color:#1f3c88;
 
 box-shadow:0 0 10px rgba(31,60,136,0.15);
-
-}
-
-
-/* =========================
-   السهم العام
-========================= */
-
-.select-arrow{
-
-position:absolute;
-
-left:10px;
-
-top:50%;
-
-transform:translateY(-50%);
-
-width:38px;
-
-height:38px;
-
-border:none;
-
-background:transparent;
-
-color:#1f3c88;
-
-font-size:18px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-cursor:pointer;
-
-z-index:10;
-
-margin:0;
-
-padding:0;
-
-box-shadow:none;
-
-}
-
-
-/* لا يتأثر السهم عند المرور عليه */
-
-.select-arrow:hover{
-
-background:transparent;
-
-transform:translateY(-50%);
-
-box-shadow:none;
-
-}
-
-
-/* =========================
-   القوائم المخصصة
-========================= */
-
-.custom-dropdown{
-
-display:none;
-
-position:absolute;
-
-top:66px;
-
-right:0;
-
-left:0;
-
-background:white;
-
-border:1px solid #ddd;
-
-border-radius:16px;
-
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-
-z-index:9999;
-
-overflow:hidden;
-
-text-align:right;
-
-}
-
-
-.custom-dropdown.show{
-
-display:block;
-
-}
-
-
-/* عناصر القوائم */
-
-.dropdown-option{
-
-padding:14px 18px;
-
-font-size:16px;
-
-cursor:pointer;
-
-border-bottom:1px solid #f1f1f1;
-
-background:white;
-
-}
-
-
-.dropdown-option:last-child{
-
-border-bottom:none;
-
-}
-
-
-.dropdown-option:hover{
-
-background:#f4f5ff;
-
-}
-
-
-.dropdown-option:active{
-
-background:#eef0ff;
-
-}
-
-
-/* =========================
-   قائمة الطالبات
-========================= */
-
-.student-dropdown{
-
-top:66px;
-
-}
-
-
-.student-filter{
-
-padding:10px;
-
-border-bottom:1px solid #eee;
-
-background:#fafafa;
-
-}
-
-
-.student-filter input{
-
-height:48px;
-
-padding:0 15px;
-
-font-size:15px;
-
-}
-
-
-.student-list{
-
-max-height:280px;
-
-overflow-y:auto;
-
--webkit-overflow-scrolling:touch;
-
-}
-
-
-.student-option{
-
-padding:13px 18px;
-
-font-size:15px;
-
-text-align:right;
-
-cursor:pointer;
-
-border-bottom:1px solid #f1f1f1;
-
-background:white;
-
-}
-
-
-.student-option:hover{
-
-background:#f4f5ff;
-
-}
-
-
-.student-option:active{
-
-background:#eef0ff;
-
-}
-
-
-.no-students{
-
-padding:20px;
-
-font-size:14px;
-
-color:#777;
-
-text-align:center;
-
 }
 
 
 /* الزر */
 
-button.send-button{
+button{
 
 width:100%;
 
@@ -451,18 +255,16 @@ cursor:pointer;
 transition:0.25s;
 
 margin-top:10px;
-
 }
 
 
-button.send-button:hover{
+button:hover{
 
 background:#6c3eb7;
 
 transform:translateY(-2px);
 
 box-shadow:0 8px 18px rgba(108,62,183,0.25);
-
 }
 
 
@@ -483,7 +285,6 @@ font-size:22px;
 font-weight:bold;
 
 color:#1f3c88;
-
 }
 
 
@@ -492,7 +293,6 @@ color:#1f3c88;
 color:#6c3eb7;
 
 font-size:34px;
-
 }
 
 
@@ -505,7 +305,6 @@ display:grid;
 grid-template-columns:repeat(3,1fr);
 
 gap:14px;
-
 }
 
 
@@ -518,7 +317,6 @@ padding:18px 10px;
 border-radius:18px;
 
 box-shadow:0 5px 12px rgba(0,0,0,0.05);
-
 }
 
 
@@ -529,7 +327,6 @@ margin:0;
 font-size:15px;
 
 color:#1f3c88;
-
 }
 
 
@@ -542,7 +339,6 @@ font-size:30px;
 font-weight:bold;
 
 color:#6c3eb7;
-
 }
 
 
@@ -557,42 +353,32 @@ font-size:14px;
 color:#444;
 
 padding-bottom:15px;
-
 }
 
 
-/* =========================
-   الجوال
-========================= */
+/* الجوال */
 
 @media(max-width:600px){
 
 .overlay{
 
 padding:25px 14px;
-
 }
 
 
 .logo{
 
-width:150px;
+width:170px;
 
-max-width:55vw;
-
-margin-bottom:15px;
-
+max-width:60vw;
 }
 
 
 h1{
 
-font-size:34px;
+font-size:40px;
 
-line-height:1.35;
-
-margin-bottom:22px;
-
+margin-bottom:28px;
 }
 
 
@@ -604,82 +390,48 @@ width:94vw;
 padding:22px;
 
 border-radius:24px;
-
 }
 
 
 input{
 
-height:56px;
-
-font-size:16px;
-
-}
-
-
-button.send-button{
-
-height:56px;
+height:58px;
 
 font-size:17px;
 
+padding-right:50px;
+
+padding-left:48px;
 }
 
 
-.select-arrow{
+.dropdown-arrow{
 
-width:38px;
+left:16px;
 
-height:38px;
-
-font-size:17px;
-
+font-size:27px;
 }
 
 
-.custom-dropdown{
+.icon{
 
-top:61px;
+right:16px;
 
+font-size:19px;
 }
 
 
-.student-dropdown{
+button{
 
-top:61px;
+height:58px;
 
-}
-
-
-.dropdown-option{
-
-padding:13px 15px;
-
-font-size:15px;
-
-}
-
-
-.student-list{
-
-max-height:260px;
-
-}
-
-
-.student-option{
-
-padding:13px 15px;
-
-font-size:14px;
-
+font-size:19px;
 }
 
 
 .stats-box{
 
 grid-template-columns:1fr;
-
 }
 
 }
@@ -693,14 +445,12 @@ grid-template-columns:1fr;
 .stats-container{
 
 max-width:600px;
-
 }
 
 
 h1{
 
 font-size:78px;
-
 }
 
 }
@@ -712,18 +462,14 @@ font-size:78px;
 
 <body>
 
-
 <div class="overlay">
 
 
-<!-- الشعار -->
+<!-- اللوقو -->
 
 <img
-
 src="https://lh3.googleusercontent.com/d/1M2HSqXpnuZrGR_KJFeiIypmAepALG9bh"
-
 class="logo"
-
 >
 
 
@@ -736,283 +482,100 @@ class="logo"
 </h1>
 
 
-<!-- =========================
-     صندوق الإرسال
-========================= -->
+<!-- صندوق الإرسال -->
 
 <div class="container">
 
 
-<!-- =========================
-     المرحلة
-========================= -->
+<!-- المرحلة -->
 
 <div class="search-box">
 
 <span class="icon">📚</span>
 
+<span class="dropdown-arrow">⌄</span>
+
 <input
-
+list="stage-list"
 id="stage"
-
 placeholder="اختاري المرحلة"
-
-readonly
-
->
-
-
-<button
-
-type="button"
-
-class="select-arrow"
-
-id="stage-arrow"
-
->
-
-▼
-
-</button>
-
-
-<div
-
-class="custom-dropdown"
-
-id="stage-dropdown"
-
->
-
-<div
-
-class="dropdown-option"
-
-data-value="أول ثانوي"
-
->
-
-أول ثانوي
-
-</div>
-
-<div
-
-class="dropdown-option"
-
-data-value="ثاني ثانوي"
-
->
-
-ثاني ثانوي
-
-</div>
-
-<div
-
-class="dropdown-option"
-
-data-value="ثالث ثانوي"
-
->
-
-ثالث ثانوي
-
-</div>
-
-</div>
+autocomplete="off"
+/>
 
 </div>
 
 
-<!-- =========================
-     الطالبة
-========================= -->
+<datalist id="stage-list">
 
-<div class="search-box student-picker">
+<option value="أول ثانوي">
+
+<option value="ثاني ثانوي">
+
+<option value="ثالث ثانوي">
+
+</datalist>
+
+
+
+<!-- الطالبة -->
+
+<div class="search-box">
 
 <span class="icon">🔎</span>
 
+<span class="dropdown-arrow">⌄</span>
 
 <input
-
+list="students-list"
 id="search"
-
-placeholder="اكتبي اسم الطالبة أو اختاري من السهم"
-
-autocomplete="off"
-
->
-
-
-<button
-
-type="button"
-
-class="select-arrow"
-
-id="student-arrow"
-
->
-
-▼
-
-</button>
-
-
-<!-- قائمة الطالبات -->
-
-<div
-
-class="custom-dropdown student-dropdown"
-
-id="student-dropdown"
-
->
-
-
-<div class="student-filter">
-
-<input
-
-id="student-filter"
-
 placeholder="ابحثي عن الطالبة"
-
 autocomplete="off"
-
->
-
-</div>
-
-
-<div
-
-class="student-list"
-
-id="student-list"
-
->
-
-<div class="no-students">
-
-اختاري المرحلة أولاً
-
-</div>
+/>
 
 </div>
 
 
-</div>
+<datalist id="students-list">
 
-</div>
+</datalist>
 
 
-<!-- =========================
-     سبب الإرسال
-========================= -->
+
+<!-- سبب الإرسال -->
 
 <div class="search-box">
 
 <span class="icon">📩</span>
 
+<span class="dropdown-arrow">⌄</span>
+
 <input
-
+list="type-list"
 id="type"
-
-placeholder="اختاري سبب الإرسال"
-
-readonly
-
->
-
-
-<button
-
-type="button"
-
-class="select-arrow"
-
-id="type-arrow"
-
->
-
-▼
-
-</button>
-
-
-<div
-
-class="custom-dropdown"
-
-id="type-dropdown"
-
->
-
-<div
-
-class="dropdown-option"
-
-data-value="غياب"
-
->
-
-غياب
+placeholder="سبب الإرسال"
+autocomplete="off"
+/>
 
 </div>
 
-<div
 
-class="dropdown-option"
+<datalist id="type-list">
 
-data-value="تأخر"
+<option value="غياب">
 
->
+<option value="تأخر">
 
-تأخر
+<option value="شكر">
 
-</div>
+<option value="مخالفة">
 
-<div
+</datalist>
 
-class="dropdown-option"
-
-data-value="شكر"
-
->
-
-شكر
-
-</div>
-
-<div
-
-class="dropdown-option"
-
-data-value="مخالفة"
-
->
-
-مخالفة
-
-</div>
-
-</div>
-
-</div>
 
 
 <!-- زر الإرسال -->
 
-<button
-
-class="send-button"
-
-onclick="send()"
-
->
+<button onclick="send()">
 
 إرسال الرسالة
 
@@ -1022,9 +585,8 @@ onclick="send()"
 </div>
 
 
-<!-- =========================
-     الإحصائيات
-========================= -->
+
+<!-- صندوق الإحصائيات -->
 
 <div class="stats-container">
 
@@ -1033,11 +595,7 @@ onclick="send()"
 
 📅 رسائل اليوم:
 
-<span id="today-count">
-
-0
-
-</span>
+<span id="today-count">0</span>
 
 </div>
 
@@ -1062,6 +620,7 @@ onclick="send()"
 </div>
 
 
+
 <div class="stat-card">
 
 <h3>
@@ -1077,6 +636,7 @@ onclick="send()"
 </p>
 
 </div>
+
 
 
 <div class="stat-card">
@@ -1101,6 +661,7 @@ onclick="send()"
 </div>
 
 
+
 <!-- الفوتر -->
 
 <div class="footer">
@@ -1113,73 +674,16 @@ onclick="send()"
 </div>
 
 
+
 <script>
 
 
 /* =========================
-   البيانات
+   بيانات الطالبات
 ========================= */
 
 let students = [];
 
-
-/* =========================
-   العناصر
-========================= */
-
-const stageInput =
-
-document.getElementById("stage");
-
-
-const stageArrow =
-
-document.getElementById("stage-arrow");
-
-
-const stageDropdown =
-
-document.getElementById("stage-dropdown");
-
-
-const studentInput =
-
-document.getElementById("search");
-
-
-const studentArrow =
-
-document.getElementById("student-arrow");
-
-
-const studentDropdown =
-
-document.getElementById("student-dropdown");
-
-
-const studentFilter =
-
-document.getElementById("student-filter");
-
-
-const studentList =
-
-document.getElementById("student-list");
-
-
-const typeInput =
-
-document.getElementById("type");
-
-
-const typeArrow =
-
-document.getElementById("type-arrow");
-
-
-const typeDropdown =
-
-document.getElementById("type-dropdown");
 
 
 /* =========================
@@ -1196,448 +700,109 @@ download:true,
 
 header:true,
 
+skipEmptyLines:true,
+
 complete:function(results){
 
-students =
+students = results.data.map(student => ({
 
-results.data
+name: student.name?.trim(),
 
-.map(student => ({
+phone: student.phone?.trim(),
 
-name:
+id: student.id?.trim(),
 
-student.name?.trim(),
+stage: student.stage?.trim()
 
-phone:
-
-student.phone?.trim(),
-
-id:
-
-student.id?.trim(),
-
-stage:
-
-student.stage?.trim()
-
-}))
-
-.filter(student =>
-
-student.name
-
-);
+}));
 
 
-renderStudents();
+populateStudents();
+
+},
+
+error:function(error){
+
+console.error("خطأ في تحميل بيانات الطالبات:",error);
 
 }
 
 }
 
 );
+
 
 
 /* =========================
-   إغلاق جميع القوائم
+   تعبئة أسماء الطالبات
+   حسب المرحلة
 ========================= */
 
-function closeAllDropdowns(){
+function populateStudents(){
 
-stageDropdown.classList.remove("show");
-
-studentDropdown.classList.remove("show");
-
-typeDropdown.classList.remove("show");
-
-}
+const datalist =
+document.getElementById("students-list");
 
 
-/* =========================
-   المرحلة
-========================= */
+datalist.innerHTML = "";
 
-stageArrow.addEventListener(
-
-"click",
-
-function(event){
-
-event.stopPropagation();
-
-const wasOpen =
-
-stageDropdown.classList.contains("show");
-
-closeAllDropdowns();
-
-if(!wasOpen){
-
-stageDropdown.classList.add("show");
-
-}
-
-}
-
-);
-
-
-/* اختيار المرحلة */
-
-document
-
-.querySelectorAll(
-
-"#stage-dropdown .dropdown-option"
-
-)
-
-.forEach(option => {
-
-option.addEventListener(
-
-"click",
-
-function(){
-
-stageInput.value =
-
-this.dataset.value;
-
-
-/* مسح الطالبة */
-
-studentInput.value = "";
-
-studentFilter.value = "";
-
-
-/* تحديث أسماء الطالبات */
-
-renderStudents();
-
-
-closeAllDropdowns();
-
-}
-
-);
-
-});
-
-
-/* =========================
-   قائمة الطالبات
-========================= */
-
-function renderStudents(){
 
 const selectedStage =
+document.getElementById("stage").value.trim();
 
-stageInput.value.trim();
-
-
-const searchText =
-
-studentFilter.value
-
-.trim()
-
-.toLowerCase();
-
-
-studentList.innerHTML = "";
-
-
-/* إذا لم تختاري مرحلة */
 
 if(!selectedStage){
 
-studentList.innerHTML =
-
-'<div class="no-students">اختاري المرحلة أولاً</div>';
-
 return;
 
 }
 
 
-/* الطالبات حسب المرحلة */
+students
 
-let filtered =
-
-students.filter(student =>
-
+.filter(student =>
 student.stage === selectedStage
-
-);
-
-
-/* البحث بالاسم */
-
-if(searchText){
-
-filtered =
-
-filtered.filter(student =>
-
-student.name
-
-.toLowerCase()
-
-.includes(searchText)
-
-);
-
-}
-
-
-/* لا توجد نتائج */
-
-if(filtered.length === 0){
-
-studentList.innerHTML =
-
-'<div class="no-students">لا توجد طالبة بهذا الاسم</div>';
-
-return;
-
-}
-
-
-/* عرض الأسماء */
-
-filtered.forEach(student => {
-
-const option =
-
-document.createElement("div");
-
-
-option.className =
-
-"student-option";
-
-
-option.textContent =
-
-student.name;
-
-
-option.addEventListener(
-
-"click",
-
-function(){
-
-studentInput.value =
-
-student.name;
-
-studentFilter.value = "";
-
-studentDropdown.classList.remove("show");
-
-}
-
-);
-
-
-studentList.appendChild(option);
-
-});
-
-}
-
-
-/* =========================
-   فتح قائمة الطالبات
-========================= */
-
-studentArrow.addEventListener(
-
-"click",
-
-function(event){
-
-event.stopPropagation();
-
-
-if(!stageInput.value.trim()){
-
-alert("اختاري المرحلة أولاً");
-
-return;
-
-}
-
-
-const wasOpen =
-
-studentDropdown.classList.contains("show");
-
-
-closeAllDropdowns();
-
-
-if(!wasOpen){
-
-studentFilter.value = "";
-
-renderStudents();
-
-studentDropdown.classList.add("show");
-
-}
-
-});
-
-
-/* =========================
-   الكتابة باسم الطالبة
-========================= */
-
-studentInput.addEventListener(
-
-"input",
-
-function(){
-
-/*
-
-الكتابة هنا حرة بالكامل
-
-*/
-
-studentFilter.value =
-
-studentInput.value;
-
-
-renderStudents();
-
-studentDropdown.classList.add("show");
-
-});
-
-
-/* =========================
-   الضغط على خانة الطالبة
-========================= */
-
-studentInput.addEventListener(
-
-"focus",
-
-function(){
-
-if(stageInput.value.trim()){
-
-closeAllDropdowns();
-
-renderStudents();
-
-studentDropdown.classList.add("show");
-
-}
-
-});
-
-
-/* =========================
-   البحث داخل القائمة
-========================= */
-
-studentFilter.addEventListener(
-
-"input",
-
-function(){
-
-renderStudents();
-
-});
-
-
-/* =========================
-   سبب الإرسال
-========================= */
-
-typeArrow.addEventListener(
-
-"click",
-
-function(event){
-
-event.stopPropagation();
-
-const wasOpen =
-
-typeDropdown.classList.contains("show");
-
-closeAllDropdowns();
-
-if(!wasOpen){
-
-typeDropdown.classList.add("show");
-
-}
-
-});
-
-
-/* اختيار السبب */
-
-document
-
-.querySelectorAll(
-
-"#type-dropdown .dropdown-option"
-
 )
 
-.forEach(option => {
+.forEach(student => {
 
-option.addEventListener(
+const option =
+document.createElement("option");
 
-"click",
 
-function(){
+option.value =
+student.name;
 
-typeInput.value =
 
-this.dataset.value;
+datalist.appendChild(option);
 
-closeAllDropdowns();
+});
 
 }
 
-);
-
-});
 
 
 /* =========================
-   إغلاق القوائم عند الضغط خارجها
+   عند تغيير المرحلة
 ========================= */
 
-document.addEventListener(
+document
+.getElementById("stage")
+.addEventListener(
+"input",
+function(){
 
-"click",
+/* تنظيف اسم الطالبة */
 
-function(event){
+document.getElementById("search").value = "";
 
-if(
 
-!event.target.closest(".search-box")
+/* إعادة تعبئة القائمة */
 
-){
-
-closeAllDropdowns();
-
-}
+populateStudents();
 
 });
+
 
 
 /* =========================
@@ -1645,90 +810,52 @@ closeAllDropdowns();
 ========================= */
 
 const today =
-
 new Date().toLocaleDateString();
 
 
 const savedDate =
-
 localStorage.getItem("todayDate");
 
 
 if(savedDate !== today){
 
 localStorage.setItem(
-
 "todayDate",
-
 today
-
 );
 
 localStorage.setItem(
-
 "todayCount",
-
 0
-
 );
 
 }
+
 
 
 /* =========================
    تحميل الإحصائيات
 ========================= */
 
-document.getElementById(
+document.getElementById("today-count").innerText =
 
-"today-count"
-
-).innerText =
-
-localStorage.getItem(
-
-"todayCount"
-
-) || 0;
+localStorage.getItem("todayCount") || 0;
 
 
-document.getElementById(
+document.getElementById("first-count").innerText =
 
-"first-count"
-
-).innerText =
-
-localStorage.getItem(
-
-"firstCount"
-
-) || 0;
+localStorage.getItem("firstCount") || 0;
 
 
-document.getElementById(
+document.getElementById("second-count").innerText =
 
-"second-count"
-
-).innerText =
-
-localStorage.getItem(
-
-"secondCount"
-
-) || 0;
+localStorage.getItem("secondCount") || 0;
 
 
-document.getElementById(
+document.getElementById("third-count").innerText =
 
-"third-count"
+localStorage.getItem("thirdCount") || 0;
 
-).innerText =
-
-localStorage.getItem(
-
-"thirdCount"
-
-) || 0;
 
 
 /* =========================
@@ -1737,40 +864,34 @@ localStorage.getItem(
 
 function updateStats(stage){
 
+
 let first =
 
 Number(
-
 localStorage.getItem("firstCount")
-
 ) || 0;
 
 
 let second =
 
 Number(
-
 localStorage.getItem("secondCount")
-
 ) || 0;
 
 
 let third =
 
 Number(
-
 localStorage.getItem("thirdCount")
-
 ) || 0;
 
 
 let todayCount =
 
 Number(
-
 localStorage.getItem("todayCount")
-
 ) || 0;
+
 
 
 if(stage === "أول ثانوي"){
@@ -1778,39 +899,32 @@ if(stage === "أول ثانوي"){
 first++;
 
 localStorage.setItem(
-
 "firstCount",
-
 first
-
 );
 
 }
+
 
 else if(stage === "ثاني ثانوي"){
 
 second++;
 
 localStorage.setItem(
-
 "secondCount",
-
 second
-
 );
 
 }
+
 
 else if(stage === "ثالث ثانوي"){
 
 third++;
 
 localStorage.setItem(
-
 "thirdCount",
-
 third
-
 );
 
 }
@@ -1820,72 +934,144 @@ todayCount++;
 
 
 localStorage.setItem(
-
 "todayCount",
-
 todayCount
-
 );
 
 
-document.getElementById(
 
+document.getElementById(
 "today-count"
-
-).innerText =
-
-todayCount;
+).innerText = todayCount;
 
 
 document.getElementById(
-
 "first-count"
-
 ).innerText =
 
 localStorage.getItem(
-
 "firstCount"
-
 ) || 0;
 
 
 document.getElementById(
-
 "second-count"
-
 ).innerText =
 
 localStorage.getItem(
-
 "secondCount"
-
 ) || 0;
 
 
 document.getElementById(
-
 "third-count"
-
 ).innerText =
 
 localStorage.getItem(
-
 "thirdCount"
-
 ) || 0;
 
 }
 
 
+
 /* =========================
-   إنشاء الرسالة
+   الإرسال
 ========================= */
 
-function createMessage(student,type){
+function send(){
+
+
+const name =
+
+document
+.getElementById("search")
+.value
+.trim();
+
+
+const type =
+
+document
+.getElementById("type")
+.value
+.trim();
+
+
+const selectedStage =
+
+document
+.getElementById("stage")
+.value
+.trim();
+
+
+
+/* التأكد من اختيار المرحلة */
+
+if(!selectedStage){
+
+alert("اختاري المرحلة أولاً");
+
+document
+.getElementById("stage")
+.focus();
+
+return;
+
+}
+
+
+
+/* البحث عن الطالبة */
+
+const student =
+
+students.find(
+s => s.name === name
+);
+
+
+
+if(!student){
+
+alert("اختاري الطالبة أولاً");
+
+document
+.getElementById("search")
+.focus();
+
+return;
+
+}
+
+
+
+/* التأكد من سبب الإرسال */
+
+if(!type){
+
+alert("اختاري سبب الإرسال");
+
+document
+.getElementById("type")
+.focus();
+
+return;
+
+}
+
+
+
+/* =========================
+   الرسالة
+========================= */
 
 let message = "";
 
+
+
+/* غياب */
 
 if(type === "غياب"){
 
@@ -1905,6 +1091,9 @@ message =
 }
 
 
+
+/* تأخر */
+
 else if(type === "تأخر"){
 
 message =
@@ -1918,6 +1107,9 @@ ${student.name} عن الحضور اليوم.
 
 }
 
+
+
+/* مخالفة */
 
 else if(type === "مخالفة"){
 
@@ -1938,6 +1130,9 @@ message =
 }
 
 
+
+/* شكر */
+
 else{
 
 message =
@@ -1954,89 +1149,18 @@ ${student.name}
 }
 
 
-return message;
 
-}
+/* =========================
+   تحديث الإحصائيات
+========================= */
+
+updateStats(student.stage);
+
 
 
 /* =========================
-   الإرسال
+   تسجيل عملية الإرسال
 ========================= */
-
-function send(){
-
-const name =
-
-studentInput.value.trim();
-
-
-const type =
-
-typeInput.value.trim();
-
-
-const student =
-
-students.find(
-
-s => s.name === name
-
-);
-
-
-/* التأكد من الطالبة */
-
-if(!student){
-
-alert(
-
-"اختاري الطالبة أولاً"
-
-);
-
-return;
-
-}
-
-
-/* التأكد من السبب */
-
-if(!type){
-
-alert(
-
-"اختاري سبب الإرسال"
-
-);
-
-return;
-
-}
-
-
-/* إنشاء الرسالة */
-
-const message =
-
-createMessage(
-
-student,
-
-type
-
-);
-
-
-/* تحديث الإحصائيات */
-
-updateStats(
-
-student.stage
-
-);
-
-
-/* تسجيل البيانات */
 
 fetch(
 
@@ -2048,75 +1172,46 @@ method:"POST",
 
 body:JSON.stringify({
 
-name:
+name:student.name,
 
-student.name,
+stage:student.stage,
 
-stage:
-
-student.stage,
-
-type:
-
-type
+type:type
 
 })
 
 }
 
+).catch(error => {
+
+console.log(
+"تعذر تسجيل العملية:",
+error
 );
 
-
-/* رقم الجوال */
-
-const phone =
-
-String(
-
-student.phone || ""
-
-)
-
-.replace(
-
-/[^0-9]/g,
-
-""
-
-);
+});
 
 
-/* رابط واتساب */
+
+/* =========================
+   فتح واتساب
+========================= */
 
 const url =
 
 "https://api.whatsapp.com/send?phone="
-
 +
-
-phone
-
+student.phone
 +
-
 "&text="
-
 +
-
-encodeURIComponent(
-
-message
-
-);
+encodeURIComponent(message);
 
 
-/* فتح واتساب */
 
 window.open(
-
 url,
-
 "_blank"
-
 );
 
 }
