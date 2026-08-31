@@ -121,7 +121,6 @@ backdrop-filter:blur(6px);
 
 }
 
-
 .stats-container{
 
 margin-top:20px;
@@ -163,9 +162,7 @@ pointer-events:none;
 }
 
 
-/* =========================
-   الحقول
-========================= */
+/* الحقل */
 
 input{
 
@@ -179,7 +176,7 @@ border:1px solid #d7d7d7;
 
 padding-right:50px;
 
-padding-left:45px;
+padding-left:48px;
 
 font-size:17px;
 
@@ -204,42 +201,30 @@ box-shadow:0 0 10px rgba(31,60,136,0.15);
 
 
 /* =========================
-   خانة الطالبة
+   السهم العام
 ========================= */
 
-.student-picker{
-
-position:relative;
-
-width:100%;
-
-}
-
-
-.student-input-wrap{
-
-position:relative;
-
-width:100%;
-
-}
-
-
-/* سهم القائمة */
-
-.student-arrow{
+.select-arrow{
 
 position:absolute;
 
-left:12px;
+left:10px;
 
 top:50%;
 
 transform:translateY(-50%);
 
-width:35px;
+width:38px;
 
-height:35px;
+height:38px;
+
+border:none;
+
+background:transparent;
+
+color:#1f3c88;
+
+font-size:18px;
 
 display:flex;
 
@@ -247,32 +232,47 @@ align-items:center;
 
 justify-content:center;
 
-font-size:17px;
-
-color:#1f3c88;
-
 cursor:pointer;
 
 z-index:10;
 
-border-radius:50%;
+margin:0;
+
+padding:0;
+
+box-shadow:none;
 
 }
 
 
-/* القائمة */
+/* لا يتأثر السهم عند المرور عليه */
 
-.student-dropdown{
+.select-arrow:hover{
+
+background:transparent;
+
+transform:translateY(-50%);
+
+box-shadow:none;
+
+}
+
+
+/* =========================
+   القوائم المخصصة
+========================= */
+
+.custom-dropdown{
 
 display:none;
 
 position:absolute;
 
+top:66px;
+
 right:0;
 
 left:0;
-
-top:64px;
 
 background:white;
 
@@ -286,19 +286,66 @@ z-index:9999;
 
 overflow:hidden;
 
+text-align:right;
+
 }
 
 
-/* تظهر القائمة */
-
-.student-dropdown.show{
+.custom-dropdown.show{
 
 display:block;
 
 }
 
 
-/* البحث داخل القائمة */
+/* عناصر القوائم */
+
+.dropdown-option{
+
+padding:14px 18px;
+
+font-size:16px;
+
+cursor:pointer;
+
+border-bottom:1px solid #f1f1f1;
+
+background:white;
+
+}
+
+
+.dropdown-option:last-child{
+
+border-bottom:none;
+
+}
+
+
+.dropdown-option:hover{
+
+background:#f4f5ff;
+
+}
+
+
+.dropdown-option:active{
+
+background:#eef0ff;
+
+}
+
+
+/* =========================
+   قائمة الطالبات
+========================= */
+
+.student-dropdown{
+
+top:66px;
+
+}
+
 
 .student-filter{
 
@@ -321,8 +368,6 @@ font-size:15px;
 
 }
 
-
-/* قائمة الأسماء */
 
 .student-list{
 
@@ -366,8 +411,6 @@ background:#eef0ff;
 }
 
 
-/* لا توجد نتائج */
-
 .no-students{
 
 padding:20px;
@@ -376,12 +419,14 @@ font-size:14px;
 
 color:#777;
 
+text-align:center;
+
 }
 
 
 /* الزر */
 
-button{
+button.send-button{
 
 width:100%;
 
@@ -410,7 +455,7 @@ margin-top:10px;
 }
 
 
-button:hover{
+button.send-button:hover{
 
 background:#6c3eb7;
 
@@ -572,7 +617,7 @@ font-size:16px;
 }
 
 
-button{
+button.send-button{
 
 height:56px;
 
@@ -581,9 +626,36 @@ font-size:17px;
 }
 
 
+.select-arrow{
+
+width:38px;
+
+height:38px;
+
+font-size:17px;
+
+}
+
+
+.custom-dropdown{
+
+top:61px;
+
+}
+
+
 .student-dropdown{
 
-top:60px;
+top:61px;
+
+}
+
+
+.dropdown-option{
+
+padding:13px 15px;
+
+font-size:15px;
 
 }
 
@@ -613,9 +685,7 @@ grid-template-columns:1fr;
 }
 
 
-/* =========================
-   الشاشات الكبيرة
-========================= */
+/* الشاشات الكبيرة */
 
 @media(min-width:1400px){
 
@@ -683,38 +753,84 @@ class="logo"
 
 <input
 
-list="stage-list"
-
 id="stage"
 
 placeholder="اختاري المرحلة"
 
-autocomplete="off"
+readonly
 
 >
+
+
+<button
+
+type="button"
+
+class="select-arrow"
+
+id="stage-arrow"
+
+>
+
+▼
+
+</button>
+
+
+<div
+
+class="custom-dropdown"
+
+id="stage-dropdown"
+
+>
+
+<div
+
+class="dropdown-option"
+
+data-value="أول ثانوي"
+
+>
+
+أول ثانوي
+
+</div>
+
+<div
+
+class="dropdown-option"
+
+data-value="ثاني ثانوي"
+
+>
+
+ثاني ثانوي
+
+</div>
+
+<div
+
+class="dropdown-option"
+
+data-value="ثالث ثانوي"
+
+>
+
+ثالث ثانوي
+
+</div>
+
+</div>
 
 </div>
 
 
-<datalist id="stage-list">
-
-<option value="أول ثانوي">
-
-<option value="ثاني ثانوي">
-
-<option value="ثالث ثانوي">
-
-</datalist>
-
-
 <!-- =========================
-     اختيار الطالبة
+     الطالبة
 ========================= -->
 
 <div class="search-box student-picker">
-
-
-<div class="student-input-wrap">
 
 <span class="icon">🔎</span>
 
@@ -730,9 +846,11 @@ autocomplete="off"
 >
 
 
-<span
+<button
 
-class="student-arrow"
+type="button"
+
+class="select-arrow"
 
 id="student-arrow"
 
@@ -740,23 +858,19 @@ id="student-arrow"
 
 ▼
 
-</span>
-
-</div>
+</button>
 
 
-<!-- القائمة -->
+<!-- قائمة الطالبات -->
 
 <div
 
-class="student-dropdown"
+class="custom-dropdown student-dropdown"
 
 id="student-dropdown"
 
 >
 
-
-<!-- البحث داخل القائمة -->
 
 <div class="student-filter">
 
@@ -772,8 +886,6 @@ autocomplete="off"
 
 </div>
 
-
-<!-- الأسماء -->
 
 <div
 
@@ -794,7 +906,6 @@ id="student-list"
 
 </div>
 
-
 </div>
 
 
@@ -808,35 +919,100 @@ id="student-list"
 
 <input
 
-list="type-list"
-
 id="type"
 
-placeholder="سبب الإرسال"
+placeholder="اختاري سبب الإرسال"
 
-autocomplete="off"
+readonly
 
 >
+
+
+<button
+
+type="button"
+
+class="select-arrow"
+
+id="type-arrow"
+
+>
+
+▼
+
+</button>
+
+
+<div
+
+class="custom-dropdown"
+
+id="type-dropdown"
+
+>
+
+<div
+
+class="dropdown-option"
+
+data-value="غياب"
+
+>
+
+غياب
+
+</div>
+
+<div
+
+class="dropdown-option"
+
+data-value="تأخر"
+
+>
+
+تأخر
+
+</div>
+
+<div
+
+class="dropdown-option"
+
+data-value="شكر"
+
+>
+
+شكر
+
+</div>
+
+<div
+
+class="dropdown-option"
+
+data-value="مخالفة"
+
+>
+
+مخالفة
+
+</div>
+
+</div>
 
 </div>
 
 
-<datalist id="type-list">
+<!-- زر الإرسال -->
 
-<option value="غياب">
+<button
 
-<option value="تأخر">
+class="send-button"
 
-<option value="شكر">
+onclick="send()"
 
-<option value="مخالفة">
-
-</datalist>
-
-
-<!-- الزر -->
-
-<button onclick="send()">
+>
 
 إرسال الرسالة
 
@@ -925,6 +1101,8 @@ autocomplete="off"
 </div>
 
 
+<!-- الفوتر -->
+
 <div class="footer">
 
 متوسطة وثانوية الأندلس الأهلية بالطائف - بنات
@@ -954,6 +1132,16 @@ const stageInput =
 document.getElementById("stage");
 
 
+const stageArrow =
+
+document.getElementById("stage-arrow");
+
+
+const stageDropdown =
+
+document.getElementById("stage-dropdown");
+
+
 const studentInput =
 
 document.getElementById("search");
@@ -977,6 +1165,21 @@ document.getElementById("student-filter");
 const studentList =
 
 document.getElementById("student-list");
+
+
+const typeInput =
+
+document.getElementById("type");
+
+
+const typeArrow =
+
+document.getElementById("type-arrow");
+
+
+const typeDropdown =
+
+document.getElementById("type-dropdown");
 
 
 /* =========================
@@ -1026,8 +1229,6 @@ student.name
 );
 
 
-/* بعد تحميل البيانات */
-
 renderStudents();
 
 }
@@ -1038,11 +1239,98 @@ renderStudents();
 
 
 /* =========================
-   عرض الطالبات
+   إغلاق جميع القوائم
+========================= */
+
+function closeAllDropdowns(){
+
+stageDropdown.classList.remove("show");
+
+studentDropdown.classList.remove("show");
+
+typeDropdown.classList.remove("show");
+
+}
+
+
+/* =========================
+   المرحلة
+========================= */
+
+stageArrow.addEventListener(
+
+"click",
+
+function(event){
+
+event.stopPropagation();
+
+const wasOpen =
+
+stageDropdown.classList.contains("show");
+
+closeAllDropdowns();
+
+if(!wasOpen){
+
+stageDropdown.classList.add("show");
+
+}
+
+}
+
+);
+
+
+/* اختيار المرحلة */
+
+document
+
+.querySelectorAll(
+
+"#stage-dropdown .dropdown-option"
+
+)
+
+.forEach(option => {
+
+option.addEventListener(
+
+"click",
+
+function(){
+
+stageInput.value =
+
+this.dataset.value;
+
+
+/* مسح الطالبة */
+
+studentInput.value = "";
+
+studentFilter.value = "";
+
+
+/* تحديث أسماء الطالبات */
+
+renderStudents();
+
+
+closeAllDropdowns();
+
+}
+
+);
+
+});
+
+
+/* =========================
+   قائمة الطالبات
 ========================= */
 
 function renderStudents(){
-
 
 const selectedStage =
 
@@ -1061,7 +1349,7 @@ studentFilter.value
 studentList.innerHTML = "";
 
 
-/* لا توجد مرحلة */
+/* إذا لم تختاري مرحلة */
 
 if(!selectedStage){
 
@@ -1074,7 +1362,7 @@ return;
 }
 
 
-/* فلترة المرحلة */
+/* الطالبات حسب المرحلة */
 
 let filtered =
 
@@ -1085,7 +1373,7 @@ student.stage === selectedStage
 );
 
 
-/* فلترة بالاسم */
+/* البحث بالاسم */
 
 if(searchText){
 
@@ -1117,10 +1405,9 @@ return;
 }
 
 
-/* إنشاء الأسماء */
+/* عرض الأسماء */
 
 filtered.forEach(student => {
-
 
 const option =
 
@@ -1147,11 +1434,9 @@ studentInput.value =
 
 student.name;
 
+studentFilter.value = "";
 
 studentDropdown.classList.remove("show");
-
-
-studentFilter.value = "";
 
 }
 
@@ -1166,27 +1451,7 @@ studentList.appendChild(option);
 
 
 /* =========================
-   فتح القائمة
-========================= */
-
-function openStudentList(){
-
-
-studentFilter.value =
-
-studentInput.value;
-
-
-renderStudents();
-
-
-studentDropdown.classList.add("show");
-
-}
-
-
-/* =========================
-   السهم
+   فتح قائمة الطالبات
 ========================= */
 
 studentArrow.addEventListener(
@@ -1198,21 +1463,60 @@ function(event){
 event.stopPropagation();
 
 
-if(
+if(!stageInput.value.trim()){
 
-studentDropdown.classList.contains("show")
+alert("اختاري المرحلة أولاً");
 
-){
-
-studentDropdown.classList.remove("show");
+return;
 
 }
 
-else{
 
-openStudentList();
+const wasOpen =
+
+studentDropdown.classList.contains("show");
+
+
+closeAllDropdowns();
+
+
+if(!wasOpen){
+
+studentFilter.value = "";
+
+renderStudents();
+
+studentDropdown.classList.add("show");
 
 }
+
+});
+
+
+/* =========================
+   الكتابة باسم الطالبة
+========================= */
+
+studentInput.addEventListener(
+
+"input",
+
+function(){
+
+/*
+
+الكتابة هنا حرة بالكامل
+
+*/
+
+studentFilter.value =
+
+studentInput.value;
+
+
+renderStudents();
+
+studentDropdown.classList.add("show");
 
 });
 
@@ -1227,38 +1531,15 @@ studentInput.addEventListener(
 
 function(){
 
-openStudentList();
+if(stageInput.value.trim()){
 
-});
+closeAllDropdowns();
 
-
-/* =========================
-   الكتابة بحرية
-========================= */
-
-studentInput.addEventListener(
-
-"input",
-
-function(){
-
-/*
-
-هنا الكتابة تكون طبيعية
-
-ولا ننسخ الحروف أو نغير قيمة الخانة
-
-*/
-
-studentFilter.value =
-
-studentInput.value;
-
+renderStudents();
 
 studentDropdown.classList.add("show");
 
-
-renderStudents();
+}
 
 });
 
@@ -1273,52 +1554,71 @@ studentFilter.addEventListener(
 
 function(){
 
-studentInput.value =
-
-studentFilter.value;
-
-
 renderStudents();
 
 });
 
 
 /* =========================
-   تغيير المرحلة
+   سبب الإرسال
 ========================= */
 
-stageInput.addEventListener(
+typeArrow.addEventListener(
 
-"input",
+"click",
 
-function(){
+function(event){
 
-studentInput.value = "";
+event.stopPropagation();
 
-studentFilter.value = "";
+const wasOpen =
 
-renderStudents();
+typeDropdown.classList.contains("show");
+
+closeAllDropdowns();
+
+if(!wasOpen){
+
+typeDropdown.classList.add("show");
+
+}
 
 });
 
 
-stageInput.addEventListener(
+/* اختيار السبب */
 
-"change",
+document
+
+.querySelectorAll(
+
+"#type-dropdown .dropdown-option"
+
+)
+
+.forEach(option => {
+
+option.addEventListener(
+
+"click",
 
 function(){
 
-studentInput.value = "";
+typeInput.value =
 
-studentFilter.value = "";
+this.dataset.value;
 
-renderStudents();
+closeAllDropdowns();
+
+}
+
+);
 
 });
 
 
 /* =========================
-   إغلاق القائمة
+   إغلاق القوائم عند الضغط خارجها
 ========================= */
 
 document.addEventListener(
@@ -1329,11 +1629,11 @@ function(event){
 
 if(
 
-!event.target.closest(".student-picker")
+!event.target.closest(".search-box")
 
 ){
 
-studentDropdown.classList.remove("show");
+closeAllDropdowns();
 
 }
 
@@ -1437,7 +1737,6 @@ localStorage.getItem(
 
 function updateStats(stage){
 
-
 let first =
 
 Number(
@@ -1514,7 +1813,6 @@ third
 
 );
 
-
 }
 
 
@@ -1585,7 +1883,6 @@ localStorage.getItem(
 ========================= */
 
 function createMessage(student,type){
-
 
 let message = "";
 
@@ -1668,7 +1965,6 @@ return message;
 
 function send(){
 
-
 const name =
 
 studentInput.value.trim();
@@ -1676,11 +1972,7 @@ studentInput.value.trim();
 
 const type =
 
-document.getElementById(
-
-"type"
-
-).value.trim();
+typeInput.value.trim();
 
 
 const student =
@@ -1744,7 +2036,7 @@ student.stage
 );
 
 
-/* إرسال البيانات */
+/* تسجيل البيانات */
 
 fetch(
 
